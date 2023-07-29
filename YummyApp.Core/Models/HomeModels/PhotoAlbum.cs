@@ -16,5 +16,8 @@ namespace YummyApp.Core.Models.HomeModels
 
         //One-To-Mant relation with Photo
         public List<Photo> Photos { get; set; }
+
+        [Required]
+        public int Blocked { get; set; } = 0;
     }
 }

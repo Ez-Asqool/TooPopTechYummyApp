@@ -27,8 +27,10 @@ namespace YummyApp.Core.Models.HomeModels
         public int CategoryId { get; set; }
         public MenuCategory Category { get; set; }
 
+        [Required]
+        public int Blocked { get; set; } = 0;
 
-        //public string ApplicationUserId { get; set; } //to connect Meal with its Chef
-        //public virtual ApplicationUser ApplicationUser { get; set; }
+        public string ApplicationUserId { get; set; } //to connect Meal with its Chef
+        public virtual ApplicationUser User { get; set; }
     }
 }

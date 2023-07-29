@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using YummyApp.Core.Models.HomeModels;
 using YummyApp.Core.Models.AdminModels;
+using YummyApp.Core.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace YummyApp.EF.Data
@@ -18,7 +19,8 @@ namespace YummyApp.EF.Data
             builder.Entity<MenuCategory>().HasData(
                 new MenuCategory {Id = 1, Name = "Breakfast" },
                 new MenuCategory {Id = 2, Name = "Lunch" },
-                new MenuCategory {Id = 3, Name = "Dinner" }
+                new MenuCategory {Id = 3, Name = "Dinner" },
+                new MenuCategory {Id = 4, Name = "Starters" }
                 );
 
             // *** Add Role ***
@@ -56,7 +58,7 @@ namespace YummyApp.EF.Data
             // *** Add Admin User ***
 
                 //GUID
-            string ADMIN_ID = "a65e2d46-2033-4d15-81fc-6ad50d3e904b";
+            string ADMIN_ID = "d895bbb8-dfa9-4700-b2f7-7e7c333b21bf";
 
             var AdminUser = new ApplicationUser
             {
@@ -66,16 +68,16 @@ namespace YummyApp.EF.Data
                 FirstName = "Admin",
                 LastName = "Admin",
                 JobTitle = "Master Admin",
-                PhoneNumber = "1234567890", 
+                PhoneNumber = "1234567890",
                 UserName = "admin@admin.com",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
-                UserType = UserType.Administrator   
+                UserType = UserType.Administrator
             };
 
                 //Password Hasher
             PasswordHasher<ApplicationUser> passwordHasher = new PasswordHasher<ApplicationUser>();
-            AdminUser.PasswordHash = passwordHasher.HashPassword(AdminUser, "admin");
+            AdminUser.PasswordHash = passwordHasher.HashPassword(AdminUser, "Admin123*");
 
             builder.Entity<ApplicationUser>().HasData(AdminUser);
 

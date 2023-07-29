@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace YummyApp.EF.Data
+namespace YummyApp.Core.Models
 {
     public class ApplicationUser : IdentityUser
     {
@@ -20,6 +20,12 @@ namespace YummyApp.EF.Data
 
         [Column(TypeName = "nvarchar(16)")]
         public UserType UserType { get; set; }
+
+        [Required]
+        public int Status { get; set; } = 1;
+
+        [Required]
+        public int Blocked { get; set; } = 0;
     }
 
     public enum UserType

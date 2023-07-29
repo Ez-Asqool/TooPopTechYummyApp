@@ -18,5 +18,8 @@ namespace YummyApp.Core.Models.HomeModels
 
         //one-to-many relation with Meal
         public List<Meal> Meals { get; set; }
+
+        [Required]
+        public int Blocked { get; set; } = 0;
     }
 }

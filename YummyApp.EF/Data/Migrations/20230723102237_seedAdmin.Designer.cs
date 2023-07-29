@@ -12,17 +12,18 @@ using YummyApp.EF.Data;
 namespace YummyApp.EF.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230723073759_SeedAdminUserInApplicationUser")]
-    partial class SeedAdminUserInApplicationUser
+    [Migration("20230723102237_seedAdmin")]
+    partial class seedAdmin
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -80,7 +81,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -105,7 +106,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -159,6 +160,13 @@ namespace YummyApp.EF.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "a65e2d46-2033-4d15-81fc-6ad50d3e904b",
+                            RoleId = "777be5d1-ad6a-4632-a0ee-23e28493a5ed"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -186,7 +194,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -216,7 +224,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -250,7 +258,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -284,7 +292,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -319,7 +327,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("PhotoAlbumId")
                         .HasColumnType("int");
@@ -341,7 +349,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -445,20 +453,20 @@ namespace YummyApp.EF.Data.Migrations
                         {
                             Id = "a65e2d46-2033-4d15-81fc-6ad50d3e904b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d64a9b0-dfb2-4d82-9668-60778fe79fbd",
+                            ConcurrencyStamp = "ff07eb2e-54f2-4d8f-8b03-94497bce991a",
                             Email = "admin@admin.com",
-                            EmailConfirmed = false,
+                            EmailConfirmed = true,
                             FirstName = "Admin",
                             JobTitle = "Master Admin",
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHCIMtkJQfDWDjOVxuxGfR+JpX6/UWIvfsy3tJXclgKuMYxokc1RxslLDtKXbZOO0Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAZ4S+HfuzlaEA+gUInTiSIh/aPUoeFIJ2A3Jt76Tqb949JdWWABoXYGV8tcW7VNjw==",
                             PhoneNumber = "1234567890",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "5d9b9e22-be3e-4fff-8ac3-36698e832fd0",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "3bbef084-b9c0-4ac5-b882-992a3f210f8b",
                             TwoFactorEnabled = false,
-                            UserName = "Admin",
+                            UserName = "admin@admin.com",
                             UserType = "Administrator"
                         });
                 });

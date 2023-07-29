@@ -17,10 +17,10 @@ namespace YummyApp.EF.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -78,7 +78,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -103,7 +103,7 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -161,7 +161,7 @@ namespace YummyApp.EF.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "a65e2d46-2033-4d15-81fc-6ad50d3e904b",
+                            UserId = "d895bbb8-dfa9-4700-b2f7-7e7c333b21bf",
                             RoleId = "777be5d1-ad6a-4632-a0ee-23e28493a5ed"
                         });
                 });
@@ -191,7 +191,10 @@ namespace YummyApp.EF.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Blocked")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -215,155 +218,15 @@ namespace YummyApp.EF.Data.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Contact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(2500)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contacts");
-                });
-
-            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Meal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImageName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ingredients")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Meals");
-                });
-
-            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.MenuCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MenuCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Breakfast"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Lunch"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Dinner"
-                        });
-                });
-
-            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Photo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("PhotoAlbumId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhotoName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PhotoAlbumId");
-
-                    b.ToTable("Photos");
-                });
-
-            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.PhotoAlbum", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PhotoAlbums");
-                });
-
-            modelBuilder.Entity("YummyApp.EF.Data.ApplicationUser", b =>
+            modelBuilder.Entity("YummyApp.Core.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Blocked")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -422,6 +285,9 @@ namespace YummyApp.EF.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -448,24 +314,199 @@ namespace YummyApp.EF.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a65e2d46-2033-4d15-81fc-6ad50d3e904b",
+                            Id = "d895bbb8-dfa9-4700-b2f7-7e7c333b21bf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2ee10087-83d5-4cc5-b7aa-8b1719f3ad77",
+                            Blocked = 0,
+                            ConcurrencyStamp = "6b572c1f-4f44-4108-acf4-b2367a017b7c",
                             Email = "admin@admin.com",
-                            EmailConfirmed = false,
+                            EmailConfirmed = true,
                             FirstName = "Admin",
                             JobTitle = "Master Admin",
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEHpltyyG98886w7wEwDEalcsWqh48mAf0XcM1v0STjrF0vk5QpbaSiB+ljFYgOHqA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGC5UUo8mz5Tv1hmITMQ/zZRMZVwwAZ9OjKGBv5BviWaXpl+rVp46+ZY2F1N+eJmeA==",
                             PhoneNumber = "1234567890",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "28a5fbbf-e302-41b2-8f10-a3f897b2b4ad",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "1a66e63b-508c-45b1-8ccb-abcee0147579",
+                            Status = 1,
                             TwoFactorEnabled = false,
-                            UserName = "Admin",
+                            UserName = "admin@admin.com",
                             UserType = "Administrator"
                         });
+                });
+
+            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Blocked")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(2500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Meal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Blocked")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ingredients")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Meals");
+                });
+
+            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.MenuCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Blocked")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Blocked = 0,
+                            Name = "Breakfast"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Blocked = 0,
+                            Name = "Lunch"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Blocked = 0,
+                            Name = "Dinner"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Blocked = 0,
+                            Name = "Starters"
+                        });
+                });
+
+            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Blocked")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PhotoAlbumId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhotoName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PhotoAlbumId");
+
+                    b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.PhotoAlbum", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Blocked")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhotoAlbums");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -479,7 +520,7 @@ namespace YummyApp.EF.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("YummyApp.EF.Data.ApplicationUser", null)
+                    b.HasOne("YummyApp.Core.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -488,7 +529,7 @@ namespace YummyApp.EF.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("YummyApp.EF.Data.ApplicationUser", null)
+                    b.HasOne("YummyApp.Core.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -503,7 +544,7 @@ namespace YummyApp.EF.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("YummyApp.EF.Data.ApplicationUser", null)
+                    b.HasOne("YummyApp.Core.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -512,7 +553,7 @@ namespace YummyApp.EF.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("YummyApp.EF.Data.ApplicationUser", null)
+                    b.HasOne("YummyApp.Core.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -521,6 +562,12 @@ namespace YummyApp.EF.Data.Migrations
 
             modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Meal", b =>
                 {
+                    b.HasOne("YummyApp.Core.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("YummyApp.Core.Models.HomeModels.MenuCategory", "Category")
                         .WithMany("Meals")
                         .HasForeignKey("CategoryId")
@@ -528,6 +575,8 @@ namespace YummyApp.EF.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Photo", b =>

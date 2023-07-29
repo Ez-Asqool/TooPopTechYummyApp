@@ -1,0 +1,17 @@
+﻿.custom-toast {
+    position: fixed;
+    top: 15.5%; /* Adjust the vertical position as needed */
+    right: 20px; /* Adjust the horizontal position as needed */
+    width: 400px;
+    z-index: 9999;
+    transform: translateY(-50%); /* Center the toast vertically */
+}
+
+.custom-toast-body {
+    font-size: 25px;
+}
+
+/* Define your custom green color */
+.bg-custom-green {
+    background-color: red; /* Replace this with the desired shade of green */
+}

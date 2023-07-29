@@ -2,8 +2,7 @@
 
 namespace YummyApp.app.Areas.Chef.Controllers
 {
-    [Area("Chef")]
-    public class HomeController : Controller
+    public class HomeController : ChefBaseController
     {
         public IActionResult Index()
         {

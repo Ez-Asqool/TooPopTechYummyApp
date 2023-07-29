@@ -97,12 +97,17 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 										<!--begin:Menu link-->
-										<a href="/Logout">
+									<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Account/Login", new { area = "Identity" })" method="post">
 										<span class="menu-link">
-											<span class="menu-title" class="text text-dark">Logout</span>
+											<span class="menu-title" class="text text-dark">
+												
+													<button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+												
+											</span>
 											<span class="menu-arrow d-lg-none"></span>
 										</span>
-										</a>
+									</form>
+										
 										<!--end:Menu link-->
 									</div>
 									
@@ -2060,6 +2065,19 @@ License: For each use you must have a valid license purchased only from above li
 														<span class="bullet bullet-dot"></span>
 													</span>
 													<span class="menu-title">Events</span>
+												</a>
+												<!--end:Menu link-->
+											</div>
+											<!--end:Menu item-->
+
+											<!--begin:Menu item-->
+											<div class="menu-item">
+												<!--begin:Menu link-->
+												<a class="menu-link active" asp-area="Admin" asp-controller="Chef" asp-action="Index">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Chefs</span>
 												</a>
 												<!--end:Menu link-->
 											</div>

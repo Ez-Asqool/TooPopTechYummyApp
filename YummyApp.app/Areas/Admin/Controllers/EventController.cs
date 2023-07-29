@@ -21,11 +21,11 @@ namespace YummyApp.app.Areas.Admin.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult All()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult All()
+        //{
+        //    return View();
+        //}
 
         [HttpPost]
         public IActionResult AllData()
@@ -163,7 +163,7 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Delete(DeleteEventVM deleteEventVM)
+        public void Delete(DeleteEventVM deleteEventVM)
         {
             var deleteEvent = _unitOfWork.Events.GetById(deleteEventVM.Id);
 
@@ -175,10 +175,10 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
                 _unitOfWork.Complete();
 
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
 
-            return View(deleteEventVM);
+            //return View(deleteEventVM);
         }
 
         

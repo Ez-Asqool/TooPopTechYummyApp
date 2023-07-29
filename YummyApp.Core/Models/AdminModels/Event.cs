@@ -22,5 +22,8 @@ namespace YummyApp.Core.Models.AdminModels
 
         [Required]
         public string ImageName { get; set; }
+
+        [Required]
+        public int Blocked { get; set; } = 0;
     }
 }

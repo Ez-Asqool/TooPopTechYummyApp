@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace YummyApp.app.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class AdminBaseController : Controller
     {
         

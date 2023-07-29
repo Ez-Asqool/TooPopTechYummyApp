@@ -39,10 +39,12 @@ namespace YummyApp.app.Services.FileUploadService
             var filePath = Path.Combine(uploadFolder, uniqueName);
             // {serverlocation}\Images\0f8fad5b-d9cb-469f-a165-70867728950e.jpg
 
-            //Delete Old File
-            string fulloldpath = Path.Combine(uploadFolder, OldFileName);
-            System.IO.File.Delete(fulloldpath);
-            //System.IO.File.Move(sourse,destination);
+            if (OldFileName != null) { 
+                //Delete Old File
+                string fulloldpath = Path.Combine(uploadFolder, OldFileName);
+                System.IO.File.Delete(fulloldpath);
+                //System.IO.File.Move(sourse,destination);
+            }
 
             //Save New File
             FileStream fileStream = new FileStream(filePath, FileMode.Create);
