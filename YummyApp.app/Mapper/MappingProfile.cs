@@ -40,7 +40,15 @@ namespace YummyApp.Core.Mapper
 	        .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name))
 	        .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.UserName));
 
-		}
+            CreateMap<Meal, UpdateMealVM>()
+            .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name));
+
+            CreateMap<UpdateMealVM, Meal>()
+           .ForMember(dest => dest.Category, opt => opt.Ignore());
+
+            CreateMap<AddBookVM, Book>();
+
+        }
 
     }
 }

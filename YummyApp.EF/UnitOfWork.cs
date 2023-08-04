@@ -17,26 +17,29 @@ namespace YummyApp.EF
     {
 
         private readonly ApplicationDbContext _context;
-
-        public IBaseRepository<Contact> Contacts { get; private set; }
         public IBaseRepository<MenuCategory> MenuCategory { get; private set; }
+        public IBaseRepository<Photo> Photo { get; private set; }
+        public IBookRepository Book { get; private set; }
         
-
+        public IPhotoAlbumRepository PhotoAlbum { get; private set; }
         public IEventsRepository Events { get; private set; }
         public IMealsRepository Meals { get; private set; }
+        public IContactRepository Contacts { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-            Contacts = new BaseRepository<Contact>(_context);
+            Contacts = new ContactRepository(_context);
             MenuCategory = new BaseRepository<MenuCategory>(_context);
+            Photo = new BaseRepository<Photo>(_context);
+            Book = new BookRepository(_context);
             Events = new EventsRepository(_context);
             Meals = new MealsRepository(_context);
+            PhotoAlbum = new PhotoAlbumRepository(_context);
         }
 
         
-
         public int Complete()
         {
             return _context.SaveChanges();

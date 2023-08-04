@@ -11,13 +11,14 @@ namespace YummyApp.app.Areas.Admin.Controllers
     public class EventController : AdminBaseController
     {
         private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IUnitOfWork _unitOfWork;
-        public EventController(IMapper mapper, IWebHostEnvironment hostingEnvironment, IUnitOfWork unitOfWork)
+        private readonly IImageService _imageService;   
+
+        public EventController(IMapper mapper, IImageService imageService, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
-            _hostingEnvironment = hostingEnvironment;
             _unitOfWork = unitOfWork;
+            _imageService = imageService;
         }
 
 
@@ -61,7 +62,7 @@ namespace YummyApp.app.Areas.Admin.Controllers
             {
                 var newEvent = _mapper.Map<Event>(addEventVM);
 
-                newEvent.ImageName = ImageService.uploadImage("EventImages", addEventVM.Image,  _hostingEnvironment);
+                newEvent.ImageName = _imageService.uploadImage("EventImages", addEventVM.Image);
 
                 _unitOfWork.Events.Add(newEvent);
                 _unitOfWork.Complete();
@@ -80,7 +81,7 @@ namespace YummyApp.app.Areas.Admin.Controllers
         {
             var eventExists = _unitOfWork.Events.GetById(id);
 
-            if (eventExists == null)
+            if (eventExists == null || eventExists.Blocked == 1)
             {
                 return NotFound();
             }
@@ -96,7 +97,7 @@ namespace YummyApp.app.Areas.Admin.Controllers
             { 
 
                 var eventExists = _unitOfWork.Events.GetById(updateEventVM.Id);
-                if (eventExists == null)
+                if (eventExists == null || eventExists.Blocked == 1)
                 {
                     return NotFound();
                 }
@@ -106,7 +107,7 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
                     if (updateEventVM.Image != null)
                     {
-                        eventExists.ImageName = ImageService.updateImage("EventImages", updateEventVM.Image, updateEventVM.ImageName, _hostingEnvironment);
+                        eventExists.ImageName = _imageService.updateImage("EventImages", updateEventVM.Image, updateEventVM.ImageName);
                     }
 
                     _unitOfWork.Events.Update(eventExists);
@@ -126,7 +127,7 @@ namespace YummyApp.app.Areas.Admin.Controllers
         public IActionResult Details(int id)
         {
             var eventExists = _unitOfWork.Events.GetById(id);
-            if (eventExists == null)
+            if (eventExists == null || eventExists.Blocked == 1)
             {
                 return NotFound();
             }
@@ -169,9 +170,10 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
             if (deleteEvent != null)
             {
-                _unitOfWork.Events.Delete(deleteEvent);
+                deleteEvent.Blocked = 1;
+                _unitOfWork.Events.Update(deleteEvent);
 
-                ImageService.deleteImage("EventImages", deleteEvent.ImageName, _hostingEnvironment);
+                //ImageService.deleteImage("EventImages", deleteEvent.ImageName, _hostingEnvironment);
 
                 _unitOfWork.Complete();
 

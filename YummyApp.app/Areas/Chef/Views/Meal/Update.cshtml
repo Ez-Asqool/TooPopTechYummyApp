@@ -1,4 +1,4 @@
-﻿@model YummyApp.Core.ViewModels.AdminViewModels.UpdateEventVM
+﻿@model YummyApp.Core.ViewModels.ChefViewModels.UpdateMealVM
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -12,11 +12,11 @@
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Form-->
-            <form class="form" method="post" enctype="multipart/form-data"  id="kt_modal_update_form">
+            <form asp-area="Chef" asp-controller="Meal" asp-action="Update" class="form" method="post" enctype="multipart/form-data"  id="kt_modal_update_form">
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_new_address_header">
                     <!--begin::Modal title-->
-                    <h2>Update Event</h2>
+                    <h2>Update Meal</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary btn-hide" data-bs-dismiss="modal">
@@ -66,15 +66,19 @@
                         </div>
                         <!--end::Notice-->
                         <!--end::Notice-->*@
+                        
+                        <input asp-for="ImageName" class="form-control form-control-solid" placeholder="" hidden />
+                        <input asp-for="Id" class="form-control form-control-solid" placeholder="" hidden />
+
                         <!--begin::Input group-->
                         <div class="row mb-5">
                             <!--begin::Col-->
                             <div class="col-md-6 fv-row">
                                 <!--begin::Label-->
-                                <label class="required fs-5 fw-semibold mb-2" asp-for="Title">Title</label>
+                                <label class="required fs-5 fw-semibold mb-2" asp-for="Name">Name</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" asp-for="Title" class="form-control form-control-solid" placeholder="" required/>
+                                <input type="text" asp-for="Name" class="form-control form-control-solid" placeholder="" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Col-->
@@ -84,33 +88,45 @@
                                 <label class="required fs-5 fw-semibold mb-2" asp-for="Price">Price</label>
                                 <!--end::Label-->
                                 <!--end::Input-->
-                                <input type="number" asp-for="Price" class="form-control form-control-solid" placeholder="" required/>
+                                <input type="number" asp-for="Price" class="form-control form-control-solid" placeholder="" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Col-->
                         </div>
                         <!--end::Input group-->
-                       
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-5 fv-row">
                             <!--begin::Label-->
-                            <label class="required fs-5 fw-semibold mb-2" asp-for="Description">Description</label>
+                            <label class="required fs-5 fw-semibold mb-2" asp-for="Ingredients">Ingredients</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <textarea rows="8" asp-for="Description" class="form-control form-control-solid" placeholder="" required > </textarea>
+                            <textarea rows="3" asp-for="Ingredients" class="form-control form-control-solid" placeholder="" required> </textarea>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-5 fv-row">
                             <!--begin::Label-->
-                            <label class="required fs-5 fw-semibold mb-2"asp-for="Image">Image</label>
+                            <label class="required fs-5 fw-semibold mb-2" asp-for="Category">Category</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <img src="~/EventImages/@Model.ImageName" style="width:60px; height:60px;">
+                            <select asp-for="Category" class="form-control form-control-solid">
+                                <option>Starters</option>
+                                <option>Breakfast</option>
+                                <option>Lunch</option>
+                                <option>Dinner</option>
+                            </select>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-5 fv-row">
+                            <!--begin::Label-->
+                            <label class="required fs-5 fw-semibold mb-2" asp-for="Image">Image</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <img src="~/MealImages/@Model.ImageName" style="width:60px; height:60px;" asp-append-version="true">
                             <input type="file" asp-for="Image" class="form-control form-control-solid" placeholder=""  />
-                                 <input type="text" asp-for="ImageName" hidden />
-
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->

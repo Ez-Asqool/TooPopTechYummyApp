@@ -25,7 +25,7 @@ namespace YummyApp.Core.Models.HomeModels
         public string Message { get; set; }
 
         [Required]
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; }
 
         [Required]
         public int Blocked { get; set; } = 0;    

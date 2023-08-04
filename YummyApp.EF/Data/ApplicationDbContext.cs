@@ -101,6 +101,7 @@ namespace YummyApp.EF.Data
         public DbSet<Contact> Contacts { get; set; }
 
         public DbSet<Event> Events { get; set; }
+        public DbSet<Book> Books { get; set; }
 
 
 

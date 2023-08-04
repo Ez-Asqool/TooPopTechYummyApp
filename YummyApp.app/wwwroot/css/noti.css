@@ -1,0 +1,13 @@
+﻿/* Add this CSS to your stylesheet or in a style tag in the layout file */
+.notification-icon {
+    position: relative;
+    margin-right: 30px; /* Adjust the spacing as needed */
+    margin-left: 30px; /* Adjust the spacing as needed */
+    margin-top: 30px; /* Adjust the spacing as needed */
+}
+
+#notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+}

@@ -81,13 +81,13 @@
         <textarea class="form-control" asp-for="@Model.Message" rows="5" placeholder="Message" required></textarea>
         </div>
         <div class="my-3">
-             @if(ViewBag.msg == "error"){
+           @*  @if(ViewBag.msg == "error"){*@
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
-            }
-            @if(ViewBag.msg == "success"){
+            @*}*@
+            @*@if(ViewBag.msg == "success"){*@
                 <div class="sent-message">Your message has been sent. Thank you!</div>
-            }   
+           @* } *@  
         </div>
 
         <div class="text-center"><button type="submit">Send Message</button></div>

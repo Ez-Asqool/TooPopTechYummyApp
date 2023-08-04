@@ -75,6 +75,21 @@ namespace YummyApp.EF.Repositories
             return query.Where(criteria).ToList();
         }
 
+
+        public IEnumerable<T> FindAll(string[] includes)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+            return query.ToList();
+        }
+
+
         public T Update(T entity) {
             _context.Update(entity);
             return entity;

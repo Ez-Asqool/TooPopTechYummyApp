@@ -129,7 +129,7 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
                 {
                     if(returnUrl == null)
                     {
-                        returnUrl = (user.UserType == UserType.Chef) ? Url.Content("/Chef/Meal/Index")  : Url.Content("/Admin/Event/Index");
+                        returnUrl = (user.UserType == UserType.Chef) ? Url.Content("/Chef/Meal/Index")  : Url.Content("/Admin/Home/Index");
                         returnUrl ??= Url.Content("~/");
                     }
                     

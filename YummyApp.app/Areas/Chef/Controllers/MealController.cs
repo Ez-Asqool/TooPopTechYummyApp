@@ -6,6 +6,7 @@ using YummyApp.app.Services.FileUploadService;
 using YummyApp.Core;
 using YummyApp.Core.Models;
 using YummyApp.Core.Models.HomeModels;
+using YummyApp.Core.ViewModels.AdminViewModels;
 using YummyApp.Core.ViewModels.ChefViewModels;
 
 namespace YummyApp.app.Areas.Chef.Controllers
@@ -14,13 +15,13 @@ namespace YummyApp.app.Areas.Chef.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IImageService _imageService;   
 
-        public MealController(IUnitOfWork unitOfWork, IMapper mapper, IWebHostEnvironment hostingEnvironment)
+        public MealController(IUnitOfWork unitOfWork, IMapper mapper, IImageService imageService)
         {
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
-            _hostingEnvironment = hostingEnvironment;
+            _imageService = imageService;
         }
 
         [HttpGet]
@@ -51,7 +52,7 @@ namespace YummyApp.app.Areas.Chef.Controllers
                 string userId = User.Identity.GetUserId();
                 newMeal.ApplicationUserId = userId; 
 
-                newMeal.ImageName = ImageService.uploadImage("MealImages", mealVM.Image, _hostingEnvironment);
+                newMeal.ImageName = _imageService.uploadImage("MealImages", mealVM.Image);
                 _unitOfWork.Meals.Add(newMeal);
                 _unitOfWork.Complete();
 
@@ -97,7 +98,57 @@ namespace YummyApp.app.Areas.Chef.Controllers
 		}
 
 
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var mealExists = _unitOfWork.Meals.Find(x => x.Id == id, new string[] { "User", "Category" });
+            if (mealExists == null)
+            {
+                return BadRequest();
+            }
 
+            var updateMealVM = _mapper.Map<UpdateMealVM>(mealExists);
+            return PartialView("/Areas/Chef/Views/Meal/Update.cshtml", updateMealVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(UpdateMealVM updateMealVM)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var mealExists = _unitOfWork.Meals.Find(x => x.Id == updateMealVM.Id, new string[] { "User", "Category" });
+                if (mealExists == null)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    _mapper.Map(updateMealVM, mealExists);
+
+                    if (updateMealVM.Image != null)
+                    {
+                        mealExists.ImageName = _imageService.updateImage("MealImages", updateMealVM.Image, updateMealVM.ImageName);
+                    }
+
+                    var newCategory = _unitOfWork.MenuCategory.Find(x => x.Name == updateMealVM.Category);
+
+                    if (mealExists.Category.Name != newCategory.Name)
+                    {
+                        mealExists.CategoryId = newCategory.Id;
+                    }
+                    
+
+                    _unitOfWork.Meals.Update(mealExists);
+                    _unitOfWork.Complete();
+
+                    TempData["message"] = "Meal Updated Successfully";
+                    return RedirectToAction("Index");
+                }
+            }
+            return View(updateMealVM);
+        }
 
 
     }

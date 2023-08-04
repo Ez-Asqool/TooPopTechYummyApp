@@ -2,7 +2,7 @@
     position: fixed;
     top: 17.5%; /* Adjust the vertical position as needed */
     right: 20px; /* Adjust the horizontal position as needed */
-    width: 400px;
+    width: 510px;
     z-index: 9999;
     transform: translateY(-50%); /* Center the toast vertically */
 }
@@ -15,3 +15,7 @@
 .bg-custom-green {
     background-color: #3FBF3F; /* Replace this with the desired shade of green */
 }
+
+.bg-custom-red {
+    background-color: #FF3633; /* Replace this with the desired shade of green */
+

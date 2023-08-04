@@ -60,7 +60,11 @@ namespace YummyApp.EF.Repositories
 
         public IEnumerable<ApplicationUser> GetAll()
         {
-            return _userManager.Users.ToList();
+            return _userManager.Users.Where(x => x.Blocked == 0).ToList();
+        }
+        public IEnumerable<ApplicationUser> GetAll(Expression<Func<ApplicationUser, bool>> criteria)
+        {
+            return _userManager.Users.Where(criteria).ToList();
         }
 
         public ApplicationUser GetById(string id)
@@ -121,7 +125,9 @@ namespace YummyApp.EF.Repositories
             return jsonData;
         }
 
-
-
-    }
+		public int Count(Expression<Func<ApplicationUser, bool>> criteria)
+		{
+            return _userManager.Users.Count(criteria);
+		}
+	}
 }

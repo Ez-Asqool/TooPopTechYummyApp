@@ -7,9 +7,16 @@ using System.Threading.Tasks;
 
 namespace YummyApp.app.Services.FileUploadService
 {
-    public class ImageService
+    public class ImageService : IImageService
     {
-        public static string uploadImage(string FolderName, IFormFile  Image, IWebHostEnvironment _hostingEnvironment)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+
+        public ImageService(IWebHostEnvironment hostingEnvironment)
+        {
+                _hostingEnvironment = hostingEnvironment;   
+        }
+
+        public  string uploadImage(string FolderName, IFormFile  Image)
         {
             var uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, FolderName);
             var uniqueName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);
@@ -23,7 +30,7 @@ namespace YummyApp.app.Services.FileUploadService
         }
 
 
-        public static void deleteImage(string FolderName, string OldFileName, IWebHostEnvironment _hostingEnvironment)
+        public  void deleteImage(string FolderName, string OldFileName)
         {
             var uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, FolderName);
 
@@ -32,7 +39,7 @@ namespace YummyApp.app.Services.FileUploadService
             System.IO.File.Delete(fulloldpath);
         }
 
-        public static string updateImage(string FolderName, IFormFile Image, string OldFileName, IWebHostEnvironment _hostingEnvironment)
+        public  string updateImage(string FolderName, IFormFile Image, string OldFileName)
         {
             var uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, FolderName);
             var uniqueName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);

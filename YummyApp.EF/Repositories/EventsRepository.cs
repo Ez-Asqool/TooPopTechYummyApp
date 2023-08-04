@@ -29,7 +29,7 @@ namespace YummyApp.EF.Repositories
             var sortColumn = Request.Form[string.Concat("columns[", Request.Form["order[0][column]"], "][name]")];
             var sortColumnDirection = Request.Form["order[0][dir]"];
 
-            IQueryable<Event> events = _context.Events.AsQueryable();
+            IQueryable<Event> events = _context.Events.Where(x => x.Blocked == 0).AsQueryable();
             if (!string.IsNullOrEmpty(searchValue))
             {
                 events = events.Where(x =>

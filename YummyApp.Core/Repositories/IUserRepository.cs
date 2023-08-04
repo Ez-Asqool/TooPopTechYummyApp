@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using YummyApp.Core.Models;
 
 namespace YummyApp.Core.Repositories
 {
@@ -14,6 +15,7 @@ namespace YummyApp.Core.Repositories
 
         IEnumerable<T> GetAll();
 
+        IEnumerable<ApplicationUser> GetAll(Expression<Func<ApplicationUser, bool>> criteria);
 
         //T Find(Expression<Func<T, bool>> criteria, string[] includes = null);
 
@@ -23,7 +25,8 @@ namespace YummyApp.Core.Repositories
 
         void DeleteAsync(T entity);
 
+		int Count(Expression<Func<T, bool>> criteria);
 
-        public object DataTableAllData(HttpRequest request);
+		public object DataTableAllData(HttpRequest request);
     }
 }

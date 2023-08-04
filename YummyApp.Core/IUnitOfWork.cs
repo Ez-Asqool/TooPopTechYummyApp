@@ -11,11 +11,14 @@ namespace YummyApp.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-        IBaseRepository<Contact> Contacts { get; }
         IBaseRepository<MenuCategory> MenuCategory { get; }
+        IBaseRepository<Photo> Photo { get; }
+        IBookRepository Book { get; }
         IEventsRepository Events { get; }
         IMealsRepository Meals { get; }
+        IContactRepository Contacts { get; }
 
+        IPhotoAlbumRepository PhotoAlbum { get; }
 
         //IChefRepository<> Users { get; }
 

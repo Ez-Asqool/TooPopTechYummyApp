@@ -24,6 +24,8 @@ namespace YummyApp.Core.Repositories
 
         IEnumerable<T> FindAll(Expression<Func<T, bool>> criteria, string[] includes = null);
 
+        IEnumerable<T> FindAll(string[] includes);
+
         T Update(T entity);
 
         void Delete(T entity);

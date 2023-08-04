@@ -24,9 +24,9 @@ using YummyApp.EF.Data;
 
 namespace YummyApp.app.Areas.Identity.Pages.Account
 {
+    [Authorize(Roles = "Administrator")]
     public class RegisterModel : PageModel
     {
-        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
@@ -34,6 +34,7 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IImageService _imageService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -42,7 +43,8 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager,
-            IWebHostEnvironment hostingEnvironment)
+            IWebHostEnvironment hostingEnvironment,
+            IImageService imageService)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -51,7 +53,7 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _roleManager = roleManager;
-            _hostingEnvironment = hostingEnvironment;
+            _imageService = imageService;   
         }
 
         /// <summary>
@@ -160,7 +162,7 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
 
                     if(Input.Image != null)
                     {
-                        user.ImageName = ImageService.uploadImage("UserImages", Input.Image, _hostingEnvironment);
+                        user.ImageName = _imageService.uploadImage("UserImages", Input.Image);
                     }
 
                     // Add Role To User 

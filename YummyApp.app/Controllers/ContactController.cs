@@ -32,8 +32,11 @@ namespace YummyApp.app.Controllers
             {
                 Contact contact = _mapper.Map<Contact>(contactVM);
           
+                contact.CreatedDate = DateTime.Now;
+
                 _unitOfWork.Contacts.Add(contact);
                 _unitOfWork.Complete();
+
 
                 ViewBag.msg = "success";
                 return View();

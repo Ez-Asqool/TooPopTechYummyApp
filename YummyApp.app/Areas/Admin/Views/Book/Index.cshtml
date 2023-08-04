@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<link href="~/css/toast.css" rel="stylesheet" />
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
+
+<hr />
+<div>
+    <div class="menu-content px-3 py-3 d-flex justify-content-between">
+        <h1 style="font-size: 38px;" class="text-primary">bookings</h1>
+@*        <a id="myButton" class="btn btn-primary btn-sm px-4" style="padding: 10px 20px; font-size: 18px;" asp-area="Identity" asp-page="/Account/Register">Add New Chef</a>
+*@    </div>
+</div>
+<hr />
+
+
+
+
+<div class="container">
+
+    <table id="books" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Number Of People</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+    </table>
+
+</div>
+
+
+<div id="ShowModal"></div>
+
+@*<partial name="Add.cshtml"></partial>*@
+
+
+@section Scripts
+    {
+    <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.js"></script>
+    <script src="~/js/datatables/bookDatatable.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+    
+    <!-- Add the SweetAlert script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+}
+
+
+
+

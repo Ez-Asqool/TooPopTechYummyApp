@@ -317,7 +317,7 @@ namespace YummyApp.EF.Data.Migrations
                             Id = "d895bbb8-dfa9-4700-b2f7-7e7c333b21bf",
                             AccessFailedCount = 0,
                             Blocked = 0,
-                            ConcurrencyStamp = "6b572c1f-4f44-4108-acf4-b2367a017b7c",
+                            ConcurrencyStamp = "ba360cbe-5de6-4629-bcd6-be86881a10ca",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -325,15 +325,54 @@ namespace YummyApp.EF.Data.Migrations
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGC5UUo8mz5Tv1hmITMQ/zZRMZVwwAZ9OjKGBv5BviWaXpl+rVp46+ZY2F1N+eJmeA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEOehry4FrY2/0Smbcl8fU+Yd2VNVGF7g1/ndDrtgN1Tylh0w2DwvaeTs/uwPJQn5Q==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "1a66e63b-508c-45b1-8ccb-abcee0147579",
+                            SecurityStamp = "ba04c81e-d3dd-413d-b882-7f6936a11216",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com",
                             UserType = "Administrator"
                         });
+                });
+
+            modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Book", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberOfPeople")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Time")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("YummyApp.Core.Models.HomeModels.Contact", b =>
@@ -497,6 +536,9 @@ namespace YummyApp.EF.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Blocked")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")

@@ -121,7 +121,7 @@ $(document).ready(function () {
     showSwalAndSubmitForm("#kt_modal_new_address_form", "Item has been added successfully.", '/Chef/Meal/Add');
 
     // Show Swal and submit the form for Update event
-    //showSwalAndSubmitForm("#kt_modal_update_form", "Item has been updated successfully.", '/Admin/Event/Update');
+    //showSwalAndSubmitForm("#kt_modal_update_form", "Item has been updated successfully.", '/Chef/Meal/Update');
 
     function ShowAnyModal(className, modalId, urlAddress, showModal, modalName) {
         $(document).on("click", className, function () {

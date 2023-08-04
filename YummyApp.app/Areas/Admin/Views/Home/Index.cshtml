@@ -1,0 +1,229 @@
+﻿@model YummyApp.Core.ViewModels.AdminViewModels.adminIndexVM
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content flex-column-fluid">
+	<!--begin::Content container-->
+	<div id="kt_app_content_container" class="app-container container-xxl">
+		
+		<!--here-->
+		
+		<br />
+		<br />
+		<br />
+		
+		<!--begin::Row-->
+		<div class="row g-5 g-xl-8">
+			<!--begin::Col-->
+			<div class="col-xl-4">
+				<!--begin::Mixed Widget 13-->
+				<div class="card card-xl-stretch mb-xl-8 theme-dark-bg-body" style="background-color: #F7D9E3">
+					<!--begin::Body-->
+					<div class="card-body d-flex flex-column">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column flex-grow-1">
+							<!--begin::Title-->
+							<a asp-area="Admin" asp-controller="Chef" asp-action="Index" class="text-dark text-hover-primary fw-bold fs-3">Chefs</a>
+							<!--end::Title-->
+							<!--begin::Chart-->
+							<div class="mixed-widget-13-chart" style="height: 100px"></div>
+							<!--end::Chart-->
+						</div>
+						<!--end::Wrapper-->
+						<!--begin::Stats-->
+						<div class="pt-5">
+							<!--begin::Symbol-->
+							<span class="text-dark fw-bold fs-2x lh-0"></span>
+							<!--end::Symbol-->
+							<!--begin::Number-->
+							<span class="text-dark fw-bold fs-3x me-2 lh-0">@Model.NoOfChefs Chefs</span>
+							<!--end::Number-->
+							<!--begin::Text-->
+							<span class="text-dark fw-bold fs-6 lh-0"></span>
+							<!--end::Text-->
+						</div>
+						<!--end::Stats-->
+					</div>
+					<!--end::Body-->
+				</div>
+				<!--end::Mixed Widget 13-->
+			</div>
+			<!--end::Col-->
+			<!--begin::Col-->
+			<div class="col-xl-4">
+				<!--begin::Mixed Widget 13-->
+				<div class="card card-xl-stretch mb-xl-8 theme-dark-bg-body" style="background-color: #CBF0F4">
+					<!--begin::Body-->
+					<div class="card-body d-flex flex-column">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column flex-grow-1">
+							<!--begin::Title-->
+							<a asp-area="Admin" asp-controller="Event" asp-action="Index" class="text-dark text-hover-primary fw-bold fs-3">Events</a>
+							<!--end::Title-->
+							<!--begin::Chart-->
+							<div class="mixed-widget-13-chart" style="height: 100px"></div>
+							<!--end::Chart-->
+						</div>
+						<!--end::Wrapper-->
+						<!--begin::Stats-->
+						<div class="pt-5">
+							<!--begin::Symbol-->
+							<span class="text-dark fw-bold fs-2x lh-0"></span>
+							<!--end::Symbol-->
+							<!--begin::Number-->
+							<span class="text-dark fw-bold fs-3x me-2 lh-0">@Model.NoOfEvents Events</span>
+							<!--end::Number-->
+							<!--begin::Text-->
+							<span class="text-dark fw-bold fs-6 lh-0"></span>
+							<!--end::Text-->
+						</div>
+						<!--end::Stats-->
+					</div>
+					<!--end::Body-->
+				</div>
+				<!--end::Mixed Widget 13-->
+			</div>
+			<!--end::Col-->
+			<!--begin::Col-->
+			<div class="col-xl-4">
+				<!--begin::Mixed Widget 13-->
+				<div class="card card-xl-stretch mb-xl-8 theme-dark-bg-body" style="background-color: #CBD4F4">
+					<!--begin::Body-->
+					<div class="card-body d-flex flex-column">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column flex-grow-1">
+							<!--begin::Title-->
+							<a asp-area="Admin" asp-controller="Gallery" asp-action="Index" class="text-dark text-hover-primary fw-bold fs-3">Photo Albums</a>
+							<!--end::Title-->
+							<!--begin::Chart-->
+							<div class="mixed-widget-13-chart" style="height: 100px"></div>
+							<!--end::Chart-->
+						</div>
+						<!--end::Wrapper-->
+						<!--begin::Stats-->
+						<div class="pt-5">
+							<!--begin::Symbol-->
+							<span class="text-dark fw-bold fs-2x lh-0"></span>
+							<!--end::Symbol-->
+							<!--begin::Number-->
+							<span class="text-dark fw-bold fs-3x me-2 lh-0">@Model.NoOfAlbums Albums</span>
+							<!--end::Number-->
+							<!--begin::Text-->
+							<span class="text-dark fw-bold fs-6 lh-0"></span>
+							<!--end::Text-->
+						</div>
+						<!--end::Stats-->
+					</div>
+					<!--end::Body-->
+				</div>
+				<!--end::Mixed Widget 13-->
+			</div>
+			<!--end::Col-->
+		</div>
+		<!--end::Row-->
+
+		<br />
+		<br />
+
+		<!--begin::Row-->
+		<div class="row g-5 g-xl-8">
+			<!--begin::Col-->
+			<div class="col-xl-4">
+				<!--begin::Mixed Widget 14-->
+				<div class="card card-xxl-stretch mb-5 mb-xl-8 theme-dark-bg-body" style="background-color: #F7D9E3">
+					<!--begin::Body-->
+					<div class="card-body d-flex flex-column">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column flex-grow-1">
+							<!--begin::Title-->
+							<a asp-area="Admin" asp-controller="Book" asp-action="Index" class="text-dark text-hover-primary fw-bold fs-3">Bookings</a>
+							<!--end::Title-->
+							<!--begin::Chart-->
+							<div class="mixed-widget-14-chart" style="height: 125px"></div>
+							<!--end::Chart-->
+						</div>
+						<!--end::Wrapper-->
+						<!--begin::Stats-->
+						<div class="pt-5">
+							<!--begin::Number-->
+							<span class="text-dark fw-bold fs-3x me-2 lh-0">@Model.NoOfBookings Bookings</span>
+							<!--end::Number-->
+							<!--begin::Text-->
+							<br />
+							<span class="text-dark fw-bold fs-6 lh-0">- @Model.NoOfRepliedBookings Replied</span>
+							<!--end::Text-->
+						</div>
+						<!--end::Stats-->
+					</div>
+				</div>
+				<!--end::Mixed Widget 14-->
+			</div>
+			<!--end::Col-->
+			<!--begin::Col-->
+			<div class="col-xl-4">
+				<!--begin::Mixed Widget 14-->
+				<div class="card card-xxl-stretch mb-5 mb-xl-8 theme-dark-bg-body" style="background-color: #CBF0F4">
+					<!--begin::Body-->
+					<div class="card-body d-flex flex-column">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column flex-grow-1">
+							<!--begin::Title-->
+							<a asp-area="Admin" asp-controller="Contact" asp-action="Index" class="text-dark text-hover-primary fw-bold fs-3">Customers Messages</a>
+							<!--end::Title-->
+							<!--begin::Chart-->
+							<div class="mixed-widget-14-chart" style="height: 125px"></div>
+							<!--end::Chart-->
+						</div>
+						<!--end::Wrapper-->
+						<!--begin::Stats-->
+						<div class="pt-5">
+							<!--begin::Number-->
+							<span class="text-dark fw-bold fs-3x me-2 lh-0">@Model.NoOfContacts Contacts</span>
+							<!--end::Number-->
+							<!--begin::Text-->
+							<br />
+							<span class="text-dark fw-bold fs-6 lh-0">- @Model.NoOfRepliedContacts Replied </span>
+							<!--end::Text-->
+						</div>
+						<!--end::Stats-->
+					</div>
+				</div>
+				<!--end::Mixed Widget 14-->
+			</div>
+			<!--end::Col-->
+			<!--begin::Col-->
+			<div class="col-xl-4">
+				<!--begin::Mixed Widget 14-->
+				<div class="card card-xxl-stretch mb-5 mb-xl-8 theme-dark-bg-body" style="background-color: #CBD4F4">
+					<!--begin::Body-->
+					<div class="card-body d-flex flex-column">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column flex-grow-1">
+							<!--begin::Title-->
+							<a asp-area="Admin" asp-controller="Menu" asp-action="Index" class="text-dark text-hover-primary fw-bold fs-3">Meals</a>
+							<!--end::Title-->
+							<!--begin::Chart-->
+							<div class="mixed-widget-14-chart" style="height: 125px"></div>
+							<!--end::Chart-->
+						</div>
+						<!--end::Wrapper-->
+						<!--begin::Stats-->
+						<div class="pt-5">
+							<!--begin::Number-->
+							<span class="text-dark fw-bold fs-3x me-2 lh-0">@Model.NoOfMeals Meals</span>
+							<!--end::Number-->
+							<!--begin::Text-->
+							<span class="text-dark fw-bold fs-6 lh-0"></span>
+							<!--end::Text-->
+						</div>
+						<!--end::Stats-->
+					</div>
+				</div>
+				<!--end::Mixed Widget 14-->
+			</div>
+			<!--end::Col-->
+		</div>
+		<!--end::Row-->
+		
+	</div>
+	<!--end::Content container-->
+</div>
+<!--end::Content-->

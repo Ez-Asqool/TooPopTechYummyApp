@@ -14,10 +14,12 @@ namespace YummyApp.Core.Models.HomeModels
         [Required, MaxLength(64)]
         public string Title { get; set; }
 
-        //One-To-Mant relation with Photo
+        //One-To-Many relation with Photo
         public List<Photo> Photos { get; set; }
 
         [Required]
         public int Blocked { get; set; } = 0;
+
+        public int Status { get; set; } = 0;
     }
 }

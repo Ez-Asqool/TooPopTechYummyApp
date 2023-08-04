@@ -1,4 +1,5 @@
-﻿@*
+﻿@model List<YummyApp.Core.Models.HomeModels.MenuCategory>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -53,7 +54,29 @@
 
         <div class="row gy-5">
 
-            <div class="col-lg-4 menu-item">
+                    @if (Model[3] != null)
+                    {
+                        foreach (var item in Model[3].Meals)
+                        {
+                            if (item.Blocked == 0)
+                            {
+                                <div class="col-lg-4 menu-item">
+                                    <a href="/MealImages/@item.ImageName" class="glightbox"><img src="/MealImages/@item.ImageName" class="menu-img img-fluid" alt=""></a>
+                                    <h4>@item.Name</h4>
+                                    <p class="ingredients">
+
+                                        @item.Ingredients
+                                    </p>
+                                    <p class="price">
+                                        $ @item.Price
+                                    </p>
+                                </div>
+                            }
+                            <!-- Menu Item -->
+                        }
+                    }
+
+            @*<div class="col-lg-4 menu-item">
             <a href="~/img/menu/menu-item-1.png" class="glightbox"><img src="~/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
             <h4>Magnam Tiste</h4>
             <p class="ingredients">
@@ -118,7 +141,7 @@
                 $9.95
             </p>
             </div><!-- Menu Item -->
-
+                    *@
         </div>
         </div><!-- End Starter Menu Content -->
 
@@ -130,7 +153,28 @@
         </div>
 
         <div class="row gy-5">
+                    @if (Model[0] != null)
+                    {
+                        foreach (var item in Model[0].Meals)
+                        {
+                            if(item.Blocked == 0){
+                                <div class="col-lg-4 menu-item">
+                                    <a href="/MealImages/@item.ImageName" class="glightbox"><img src="/MealImages/@item.ImageName" class="menu-img img-fluid" alt=""></a>
+                                    <h4>@item.Name</h4>
+                                    <p class="ingredients">
 
+                                        @item.Ingredients
+                                    </p>
+                                    <p class="price">
+                                        $ @item.Price
+                                    </p>
+                                </div>
+                            }
+                            <!-- Menu Item -->
+                        }
+                    }
+
+@*
             <div class="col-lg-4 menu-item">
             <a href="~/img/menu/menu-item-1.png" class="glightbox"><img src="~/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
             <h4>Magnam Tiste</h4>
@@ -196,7 +240,7 @@
                 $9.95
             </p>
             </div><!-- Menu Item -->
-
+*@
         </div>
         </div><!-- End Breakfast Menu Content -->
 
@@ -209,6 +253,28 @@
 
         <div class="row gy-5">
 
+                    @if (Model[1] != null)
+                    {
+                        foreach (var item in Model[1].Meals)
+                        {
+                            if (item.Blocked == 0)
+                            {
+                                <div class="col-lg-4 menu-item">
+                                    <a href="/MealImages/@item.ImageName" class="glightbox"><img src="/MealImages/@item.ImageName" class="menu-img img-fluid" alt=""></a>
+                                    <h4>@item.Name</h4>
+                                    <p class="ingredients">
+
+                                        @item.Ingredients
+                                    </p>
+                                    <p class="price">
+                                        $ @item.Price
+                                    </p>
+                                </div>
+                            }
+                            <!-- Menu Item -->
+                        }
+                    }
+@*
             <div class="col-lg-4 menu-item">
             <a href="~/img/menu/menu-item-1.png" class="glightbox"><img src="~/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
             <h4>Magnam Tiste</h4>
@@ -274,9 +340,10 @@
                 $9.95
             </p>
             </div><!-- Menu Item -->
-
+                    *@
         </div>
         </div><!-- End Lunch Menu Content -->
+
 
         <div class="tab-pane fade" id="menu-dinner">
 
@@ -287,6 +354,28 @@
 
         <div class="row gy-5">
 
+                            @if (Model[2] != null)
+                            {
+                                foreach (var item in Model[2].Meals)
+                                {
+                                    if (item.Blocked == 0)
+                                    {
+                                        <div class="col-lg-4 menu-item">
+                                            <a href="/MealImages/@item.ImageName" class="glightbox"><img src="/MealImages/@item.ImageName" class="menu-img img-fluid" alt=""></a>
+                                            <h4>@item.Name</h4>
+                                            <p class="ingredients">
+
+                                                @item.Ingredients
+                                            </p>
+                                            <p class="price">
+                                                $ @item.Price
+                                            </p>
+                                        </div>
+                                    }
+                                    <!-- Menu Item -->
+                                }
+                            }
+@*
             <div class="col-lg-4 menu-item">
             <a href="~/img/menu/menu-item-1.png" class="glightbox"><img src="~/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
             <h4>Magnam Tiste</h4>
@@ -352,7 +441,7 @@
                 $9.95
             </p>
             </div><!-- Menu Item -->
-
+                            *@
         </div>
         </div><!-- End Dinner Menu Content -->
 

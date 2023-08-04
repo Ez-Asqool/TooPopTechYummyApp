@@ -24,7 +24,7 @@
             { "data": "id", "name": "Id", "autowidth": true },
             {
                 "render": function (data, type, row) {
-                    return `<a href="#" style="font-size: 18px;" class=" btn-details text-dark fw-bold text-hover-primary mb-1 fs-6 "  data-bs-toggle="modal" data-bs-target="#kt_modal_details"  data-id="${row.id}">${row.firstName}</a>`
+                    return `<a href="#" style="font-size: 18px;" class=" btn-details text-dark fw-bold text-hover-primary mb-1 fs-6 "  data-bs-toggle="modal" data-bs-target="#kt_modal_details"  title="Show Chef Details" data-id="${row.id}">${row.firstName}</a>`
                 },
                 "name": "FirstName"
             },

@@ -18,13 +18,13 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
         private readonly IMapper _mapper;
 
-        private readonly IWebHostEnvironment _hostingEnvironment;
+        private IImageService _imageService;
 
-        public ChefController(IUserRepository<ApplicationUser> userRepository, IMapper mapper, IWebHostEnvironment hostingEnvironment)
+        public ChefController(IUserRepository<ApplicationUser> userRepository, IMapper mapper, IImageService imageService)
         {
             _userRepository = userRepository;
             _mapper = mapper;
-            _hostingEnvironment = hostingEnvironment;
+            _imageService = imageService;
         }
 
 
@@ -73,7 +73,7 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
                 if(updateChef.Image != null)
                 {
-                    chefExists.ImageName = ImageService.updateImage("UserImages", updateChef.Image, updateChef.ImageName, _hostingEnvironment);
+                    chefExists.ImageName = _imageService.updateImage("UserImages", updateChef.Image, updateChef.ImageName);
                 }
 
                 _userRepository.Update(chefExists);
