@@ -1,0 +1,28 @@
+﻿/* Style for the tooltip */
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+    /* Style for the tooltip text */
+    .tooltip::after {
+        content: attr(title);
+        position: absolute;
+        background-color: #333;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 14px;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        visibility: hidden;
+        white-space: nowrap;
+    }
+
+    /* Show the tooltip text on hover */
+    .tooltip:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }

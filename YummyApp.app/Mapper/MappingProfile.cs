@@ -48,6 +48,13 @@ namespace YummyApp.Core.Mapper
 
             CreateMap<AddBookVM, Book>();
 
+            CreateMap<AddTestimonialVM, Testimonial>();
+
+            CreateMap<Testimonial, DetailsTestimonialVM>();
+
+            CreateMap<Testimonial, UpdateTestimonialVM>()
+                .ReverseMap();
+
         }
 
     }

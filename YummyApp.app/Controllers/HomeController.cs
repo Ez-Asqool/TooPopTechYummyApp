@@ -42,15 +42,19 @@ namespace YummyApp.app.Controllers
 
         public IActionResult Index()
         {
+            var indexVM = new IndexVM();
 
             var album = _unitOfWork.PhotoAlbum.Find(x => x.Status == 1, new string[]{ "Photos" });
-            var indexVM = new IndexVM();
             indexVM.PhotoAlbum = album;
+
+            var testimonials = _unitOfWork.Testimonials.FindAll(x => x.Status ==1 && x.Blocked == 0);
+            indexVM.Testimonials = (List<Testimonial>) testimonials;
+
             return View(indexVM);
         }
 
         [HttpPost]
-        public void Add(IndexVM indexVM) 
+        public IActionResult Add(IndexVM indexVM) 
         {
             if (ModelState.IsValid)
             {
@@ -60,11 +64,14 @@ namespace YummyApp.app.Controllers
                 _unitOfWork.Complete();
 
                 // Send a notification to the admin
-                _hubContext.Clients.All.SendAsync("ReceiveNotification", "New table booking received!");
+                 _hubContext.Clients.All.SendAsync("ReceiveNotification", "New table booking received!");
 
                 //return View();
                 Response.StatusCode = 200;
+                var data = "OK";
+                return Ok(data);
             }
+            return BadRequest();
 
         }
 

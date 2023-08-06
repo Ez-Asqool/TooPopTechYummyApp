@@ -41,47 +41,44 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public void Reject(int id)
+        public IActionResult Reject(int id)
         {
             var bookExists = _unitOfWork.Book.Find(x => x.Id == id && x.Blocked == 0);
             if (bookExists == null)
             {
-                Response.StatusCode = 500; // Set the status code to 404 (Not Found)
-                return; // Exit the action without returning any value
+                return NotFound();
             }
 
             bookExists.Blocked = 1;
             _unitOfWork.Book.Update(bookExists);
             _unitOfWork.Complete();
 
-            _emailService.Send("ez1asqool@gmail.com", "Reject Email", "Hello From Email Service, Sorry We Can't Perform Your Booking. Can You Choose Another Appointment please. ?");
+            var body = "Hello "+ bookExists.Email +" We Are Yummy Email Service, Sorry We Can't Perform Your Booking. Can You Choose Another Appointment please. ?";
+            _emailService.Send("ez1asqool@gmail.com", "Reject Email", body);
 
-
-            Response.StatusCode = 200;
-            return;
+            return Ok();
 
         }
 
 
         [HttpPost]
-        public void Accept(int id)
+        public IActionResult Accept(int id)
         {
             var bookExists = _unitOfWork.Book.Find(x => x.Id == id && x.Blocked == 0);
             if (bookExists == null)
             {
-                Response.StatusCode = 500; // Set the status code to 404 (Not Found)
-                return; // Exit the action without returning any value
+                return NotFound();
             }
 
             bookExists.Blocked = 1;
             _unitOfWork.Book.Update(bookExists);
             _unitOfWork.Complete();
 
-            _emailService.Send("ez1asqool@gmail.com", "Accept Email", "Hello From Email Service, You Can Visit Us In The Appointment Specified, You Are Welcome.");
+            var body = "Hello "+ bookExists.Name +" We Are Yummy Email Service, You Can Visit Us In The Appointment Specified, You Are Welcome.";
 
+            _emailService.Send(bookExists.Email, "Accept Email", body);
 
-            Response.StatusCode = 200;
-            return;
+            return Ok();
 
         }
 

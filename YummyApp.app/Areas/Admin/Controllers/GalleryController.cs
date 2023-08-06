@@ -52,7 +52,7 @@ namespace YummyApp.app.Areas.Admin.Controllers
                 return RedirectToAction("Index");
 
             }
-            return View(galleryVM);
+            return BadRequest();
         }
 
         [HttpGet]

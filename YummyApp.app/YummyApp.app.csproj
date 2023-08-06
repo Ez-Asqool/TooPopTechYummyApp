@@ -18,6 +18,7 @@
     <Content Remove="wwwroot\js\indexChefHandeller.js" />
     <Content Remove="wwwroot\js\indexHandeller.js" />
     <Content Remove="wwwroot\js\indexMealHandeller.js" />
+    <Content Remove="wwwroot\js\indexTestimonialsHandeller.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +51,7 @@
     <Folder Include="Areas\Chef\Models\" />
     <Folder Include="wwwroot\EventImages\" />
     <Folder Include="wwwroot\GalleryImages\" />
+    <Folder Include="wwwroot\TestimonialsImages\" />
     <Folder Include="wwwroot\UserImages\" />
   </ItemGroup>
 
@@ -184,6 +186,7 @@
     <None Include="wwwroot\js\custom\utilities\search\horizontal.js" />
     <None Include="wwwroot\js\custom\widgets.js" />
     <None Include="wwwroot\js\indexChefHandeller.js" />
+    <None Include="wwwroot\js\indexTestimonialsHandeller.js" />
     <None Include="wwwroot\js\indexMealHandeller.js" />
     <None Include="wwwroot\js\indexHandeller.js" />
     <None Include="wwwroot\media\email\icon-bullet.svg" />

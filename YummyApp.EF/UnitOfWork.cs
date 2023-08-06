@@ -25,6 +25,7 @@ namespace YummyApp.EF
         public IEventsRepository Events { get; private set; }
         public IMealsRepository Meals { get; private set; }
         public IContactRepository Contacts { get; private set; }
+        public ITestimonialRepository Testimonials { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -37,6 +38,7 @@ namespace YummyApp.EF
             Events = new EventsRepository(_context);
             Meals = new MealsRepository(_context);
             PhotoAlbum = new PhotoAlbumRepository(_context);
+            Testimonials = new TestimonialRepository(_context); 
         }
 
         

@@ -103,6 +103,7 @@ namespace YummyApp.EF.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<Book> Books { get; set; }
 
+        public DbSet<Testimonial> Testimonials { get; set; }    
 
 
     }

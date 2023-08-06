@@ -20,6 +20,8 @@ namespace YummyApp.Core
 
         IPhotoAlbumRepository PhotoAlbum { get; }
 
+        ITestimonialRepository Testimonials { get; }    
+
         //IChefRepository<> Users { get; }
 
         int Complete();

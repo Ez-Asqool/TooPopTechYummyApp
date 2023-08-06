@@ -17,7 +17,7 @@ namespace YummyApp.app.Controllers
 
         public IActionResult Index()
         {
-            var chefs = _userRepository.GetAll(x => x.UserType == UserType.Chef && x.Blocked == 0);
+            var chefs = _userRepository.GetAll(x => x.UserType == UserType.Chef && x.Blocked == 0 && x.Status == 1);
             return View(chefs);
         }
     }

@@ -21,13 +21,6 @@ namespace YummyApp.app.Areas.Admin.Controllers
             _imageService = imageService;
         }
 
-
-        //[HttpGet]
-        //public IActionResult All()
-        //{
-        //    return View();
-        //}
-
         [HttpPost]
         public IActionResult AllData()
         {
@@ -37,23 +30,11 @@ namespace YummyApp.app.Areas.Admin.Controllers
         //List All Events
         public IActionResult Index()
         {
-            //var events = _unitOfWork.Events.GetAll();
-            //return View(events);
             return View();
         }
 
 
-        //Add Event.
 
-        //[HttpGet]
-        //public IActionResult Add()
-        //{
-        //    return View();
-        //}
-
-
-
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Add(AddEventVM addEventVM)
@@ -76,7 +57,6 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
 
         [HttpGet]
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Update(int id)
         {
             var eventExists = _unitOfWork.Events.GetById(id);
@@ -135,36 +115,10 @@ namespace YummyApp.app.Areas.Admin.Controllers
             return PartialView("/Areas/Admin/Views/Event/Details.cshtml", eventDetails);
         }
 
-        //public IActionResult Details(int id)
-        //{
-        //    var eventExists = _unitOfWork.Events.GetById(id);
-        //    if (eventExists == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var eventDetails = _mapper.Map<DetailsEventVM>(eventExists);
-        //    return View(eventDetails);
-        //}
-
-
-
-        //[HttpGet]
-        //public IActionResult Delete(int id)
-        //{
-        //    var eventExists = _unitOfWork.Events.GetById(id);
-        //    if (eventExists == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var deleteEventVM = _mapper.Map<DeleteEventVM>(eventExists);
-        //    return View(deleteEventVM);
-        //}
-
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public void Delete(DeleteEventVM deleteEventVM)
+        public IActionResult Delete(DeleteEventVM deleteEventVM)
         {
             var deleteEvent = _unitOfWork.Events.GetById(deleteEventVM.Id);
 
@@ -172,15 +126,11 @@ namespace YummyApp.app.Areas.Admin.Controllers
             {
                 deleteEvent.Blocked = 1;
                 _unitOfWork.Events.Update(deleteEvent);
-
-                //ImageService.deleteImage("EventImages", deleteEvent.ImageName, _hostingEnvironment);
-
                 _unitOfWork.Complete();
-
-                //return RedirectToAction("Index");
+                return Ok();
             }
 
-            //return View(deleteEventVM);
+            return NotFound();  
         }
 
         

@@ -83,7 +83,7 @@ $(document).ready(function () {
             { "data": "id", "name": "Id", "autowidth": true },
             {
                 "render": function (data, type, row) {
-                    return `<a href="#" class=" btn-details text-dark fw-bold text-hover-primary mb-1 fs-6 "  data-bs-toggle="modal" data-bs-target="#kt_modal_details"  data-id="${row.id}">${row.title}</a>`
+                    return `<a href="#" class=" btn-details text-dark fw-bold text-hover-primary mb-1 fs-6 "  data-bs-toggle="modal" data-bs-target="#kt_modal_details" title="Show Details"  data-id="${row.id}">${row.title}</a>`
                 },
                 "name": "Title"
             },

@@ -89,29 +89,30 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public void EditStatus(string id) 
+        public IActionResult EditStatus(string id) 
         { 
             var chef = _userRepository.GetById(id);
-            //if(chef == null) {
-            //    return BadRequest();
-            //}
+            if(chef == null) {
+                return NotFound();
+            }
             
             chef.Status = (chef.Status == 0) ? 1 : 0;
             _userRepository.Update(chef);
-            //return RedirectToAction("Index");
+            return Ok(); 
         }
 
+
         [HttpPost]
-        public  void Delete(string id) 
+        public IActionResult Delete(string id) 
         { 
             var deleteChef =  _userRepository.GetById(id);
             if (deleteChef != null)
             {
                 deleteChef.Blocked = 1;
                 _userRepository.Update(deleteChef);
-
+                return Ok();
             }
-
+            return NotFound();
         }
 
         [HttpGet]

@@ -72,21 +72,19 @@ namespace YummyApp.app.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             var ContactExists = _unitOfWork.Contacts.Find(x => x.Id == id && x.Blocked == 0);
             if (ContactExists == null)
             {
-                Response.StatusCode = 500; // Set the status code to 404 (Not Found)
-                return; // Exit the action without returning any value
+                return NotFound();
             }
 
             ContactExists.Blocked = 1;
             _unitOfWork.Contacts.Update(ContactExists);
             _unitOfWork.Complete();
 
-            
-
+            return Ok();
         }
 
 

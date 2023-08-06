@@ -14,5 +14,7 @@ namespace YummyApp.Core.ViewModels.HomeViewModels
 
         public AddBookVM AddBookVM { get; set; }
 
+        public List<Testimonial>? Testimonials { get; set; } 
+
     }
 }

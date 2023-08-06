@@ -38,12 +38,12 @@ namespace YummyApp.app.Controllers
                 _unitOfWork.Complete();
 
 
-                ViewBag.msg = "success";
-                return View();
+                Response.StatusCode = 200;
+                var data = "OK";
+                return Ok(data);
             }
 
-            ViewBag.msg = "error";
-            return View(contactVM);
+            return BadRequest();
         }
 
     }

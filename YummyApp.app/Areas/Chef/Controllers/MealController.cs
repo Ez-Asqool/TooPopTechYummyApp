@@ -71,7 +71,7 @@ namespace YummyApp.app.Areas.Chef.Controllers
             var mealExists = _unitOfWork.Meals.GetById(id);
             if (mealExists == null )
             {
-                Response.StatusCode = 500; // Set the status code to 404 (Not Found)
+                Response.StatusCode = 500; // Set the status code to 500
                 return; // Exit the action without returning any value
             }
 
@@ -90,7 +90,7 @@ namespace YummyApp.app.Areas.Chef.Controllers
             var mealExists = _unitOfWork.Meals.Find(x => x.Id == id, new string[] {"User", "Category"} );
             if (mealExists == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             var detailMeal = _mapper.Map<DetailsMealVM>(mealExists);
@@ -104,7 +104,7 @@ namespace YummyApp.app.Areas.Chef.Controllers
             var mealExists = _unitOfWork.Meals.Find(x => x.Id == id, new string[] { "User", "Category" });
             if (mealExists == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             var updateMealVM = _mapper.Map<UpdateMealVM>(mealExists);
@@ -121,7 +121,7 @@ namespace YummyApp.app.Areas.Chef.Controllers
                 var mealExists = _unitOfWork.Meals.Find(x => x.Id == updateMealVM.Id, new string[] { "User", "Category" });
                 if (mealExists == null)
                 {
-                    return BadRequest();
+                    return NotFound();
                 }
                 else
                 {
@@ -147,7 +147,7 @@ namespace YummyApp.app.Areas.Chef.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            return View(updateMealVM);
+            return BadRequest();
         }
 
 
