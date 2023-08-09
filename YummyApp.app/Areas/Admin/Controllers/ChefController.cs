@@ -73,7 +73,17 @@ namespace YummyApp.app.Areas.Admin.Controllers
 
                 if(updateChef.Image != null)
                 {
-                    chefExists.ImageName = _imageService.updateImage("UserImages", updateChef.Image, updateChef.ImageName);
+                    var fileExtension = Path.GetExtension(updateChef.Image.FileName).ToLower();
+                    if (!(fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png"))
+                    {
+                        ModelState.AddModelError("Image", "Only JPG, JPEG, and PNG files are allowed.");
+                        return View(updateChef);
+                    }
+                    else
+                    {
+                        chefExists.ImageName = _imageService.updateImage("UserImages", updateChef.Image, updateChef.ImageName);
+
+                    }
                 }
 
                 _userRepository.Update(chefExists);

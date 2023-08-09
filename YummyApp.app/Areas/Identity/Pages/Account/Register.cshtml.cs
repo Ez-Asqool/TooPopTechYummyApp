@@ -143,6 +143,16 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                if (Input.Image != null)
+                {
+                    var fileExtension = Path.GetExtension(Input.Image.FileName).ToLower();
+                    if (!(fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png"))
+                    {
+                        ModelState.AddModelError("Input.Image", "Only JPG, JPEG, and PNG files are allowed.");
+                        return Page();
+                    }
+                }
+
                 var user = CreateUser();
                 //required fields
                 user.FirstName = Input.FirstName;

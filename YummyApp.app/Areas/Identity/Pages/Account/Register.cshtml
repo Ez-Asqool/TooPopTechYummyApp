@@ -88,7 +88,7 @@
                     <span asp-validation-for="Input.Description" class="text-danger"></span>
                 </div>*@
                 <div class="form-floating mb-3">
-                    <input type="file" asp-for="Input.Image" class="form-control" autocomplete="Image" placeholder=" " />
+                    <input type="file" asp-for="Input.Image" accept="image/*" class="form-control" autocomplete="Image" placeholder=" " />
                     <label asp-for="Input.Image">Image</label>
                     <span asp-validation-for="Input.Image" class="text-danger"></span>
                 </div>

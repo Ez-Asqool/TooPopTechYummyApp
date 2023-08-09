@@ -67,7 +67,7 @@
                 
                 <div class="form-floating mb-3">
                     <img src="~/UserImages/@Model.ImageName" style="width:60px; height:60px;" asp-append-version="true">
-                    <input type="file" asp-for="Image" class="form-control" autocomplete="Image" placeholder=" " />
+                    <input type="file" asp-for="Image" accept="image/*" class="form-control" autocomplete="Image" placeholder=" " />
                     <label asp-for="Image">Image</label>
                     <span asp-validation-for="Image" class="text-danger"></span>
                 </div>

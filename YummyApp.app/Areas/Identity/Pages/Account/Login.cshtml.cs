@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using YummyApp.EF.Data;
 using YummyApp.Core.Models.HomeModels;
 using YummyApp.Core.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace YummyApp.app.Areas.Identity.Pages.Account
 {
