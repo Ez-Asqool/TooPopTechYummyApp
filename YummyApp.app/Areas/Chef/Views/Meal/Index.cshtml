@@ -77,8 +77,24 @@
     <script src="~/js/datatables/mealDatatable.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
-    <script src="~/js/indexMealHandeller.js"></script>
+    <script src="~/js/GeneralHandeller.js"></script>
+
+    <script>
+        // Show Swal and submit the form for Add event
+        showSwalAndSubmitForm("#kt_modal_new_address_form", "#meals", "Item has been added successfully.", '/Chef/Meal/Add');
+
+        ShowAnyModal(".btn-details", "modal", "Chef/Meal/Details", "#ShowModal", "#kt_modal_details");
+
+        //statusHandeller("#testimonials", '/Admin/Testimonial/EditStatus/');
+
+        deleteHandeller("#meals", '/Chef/Meal/Delete/');
+
+        updateHandeller("#meals", "/Chef/Meal/Update", '/Chef/Meal/Update/');
+    </script>
 
 }
 
+@*
+    <script src="~/js/indexMealHandeller.js"></script>
+*@
 

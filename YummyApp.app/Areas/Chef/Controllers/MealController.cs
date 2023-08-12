@@ -112,7 +112,6 @@ namespace YummyApp.app.Areas.Chef.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Update(UpdateMealVM updateMealVM)
         {
             if (ModelState.IsValid)

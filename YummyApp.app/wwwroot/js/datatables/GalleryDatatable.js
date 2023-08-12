@@ -49,6 +49,101 @@
         ]
     });
 
+
+    // Function to show Swal and submit the form
+    function showSwalAndSubmitForm(formSelector, successMessage, urlAddress) {
+
+        $(formSelector).on('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Create a new FormData object
+            var formData = new FormData(this);
+
+            // Get the uploaded files from the form data
+            var files = formData.getAll('Photos');
+
+            // Check each file's extension
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+
+                if (file) { // Check if the file is not null
+                    var allowedExtensions = ["jpg", "jpeg", "png"];
+                    var fileExtension = file.name.split('.').pop().toLowerCase();
+
+                    if (allowedExtensions.indexOf(fileExtension) === -1) {
+                        // Show error alert using SweetAlert
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Only JPG, JPEG, and PNG files are allowed.',
+                            icon: 'error',
+                            confirmButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        });
+                        return; // Stop further execution
+                    }
+                }
+            }
+
+
+            $.ajax({
+                url: urlAddress, // Replace with your actual server URL to add/update the item
+                type: 'POST',
+                cache: false,
+                data: formData,
+                processData: false, // Important: prevent jQuery from processing the data
+                contentType: false, // Important: let the server handle the content type
+                success: function (data) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: successMessage,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the Index action of the Meal controller
+                            //window.location.href = '/Admin/Testimonial/Index';
+
+                            //$('#kt_modal_new_address').modal('hide');
+                            //$('#kt_modal_new_address').remove();
+                            //$(".modal-backdrop.show").remove();
+
+                            $('#albums').DataTable().ajax.reload(null, false);
+
+                            var discardButton = document.querySelector('.btn-discard');
+                            if (discardButton) {
+                                discardButton.click();
+                            }
+                        }
+                    });
+                },
+                error: function (xhr, status, error) {
+                    // Handle the error here
+                    if (xhr.status === 500) {
+                        // Handle 400 error
+                        console.error('Resource not found.');
+
+                        // Redirect to the custom 404 page
+                        window.location.href = '/Error/500.html'; // Replace with the actual URL of your custom 404 page
+                    } else {
+                        // Handle other error codes
+                        console.error('An error occurred:', error);
+                        window.location.href = '/Error/500.html'
+                    }
+                },
+            });
+
+        });
+
+
+        // Reset the form on Discard button click
+        $(formSelector).on('click', '[type="reset"]', function () {
+            document.querySelector(formSelector).reset();
+        });
+    }
+
+    showSwalAndSubmitForm("#kt_modal_new_address_form", "Item has been added successfully.", '/Admin/Gallery/Add');
+
     function ShowAnyModal(className, modalId, urlAddress, showModal, modalName) {
         $(document).on("click", className, function () {
             let modelId = $(this).data('id');
@@ -143,8 +238,6 @@
         // Redirect to the URL
         window.location.href = url;
     });
-
-
 
 
 });

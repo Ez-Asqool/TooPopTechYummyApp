@@ -32,7 +32,7 @@
         </div>
     </div>
     <!-- JavaScript code to initialize and show the toast -->
-    @*<script>
+    <script>
         $(document).ready(function () {
             // Find the toast element and initialize the Bootstrap toast component
             $('.toast').toast();
@@ -40,7 +40,7 @@
             // Show the toast
             $('.toast').toast('show');
         });
-    </script>*@
+    </script>
 
 }
 <!--toaster-->
@@ -87,10 +87,30 @@
     <script src="~/js/datatables/chefDatatable.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
-    <script src="~/js/indexChefHandeller.js"></script>
+    <script src="~/js/GeneralHandeller.js"></script>
 
+    <script>
+
+        ShowAnyModal(".btn-details", "modal", "Admin/Chef/Details", "#ShowModal", "#kt_modal_details");
+
+        statusHandeller("#chefs", '/Admin/Chef/EditStatus/');
+
+        deleteHandeller("#chefs", '/Admin/Chef/Delete/');
+
+        // Event handler for Update button
+        $('#chefs').on('click', '.btn-update', function (e) {
+            e.preventDefault();
+            var eventId = $(this).data('id');
+            var updateUrl = '/Admin/Chef/Update/' + eventId; // Replace with your actual Update route URL
+            window.location.href = updateUrl;
+        });
+
+    </script>
    
 
 }
 
 
+@*
+    <script src="~/js/indexChefHandeller.js"></script>
+*@

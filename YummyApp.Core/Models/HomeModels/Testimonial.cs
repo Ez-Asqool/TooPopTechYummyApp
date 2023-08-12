@@ -37,4 +37,6 @@ namespace YummyApp.Core.Models.HomeModels
         public int Blocked { get; set; } = 0;
 
     }
+
+   
 }

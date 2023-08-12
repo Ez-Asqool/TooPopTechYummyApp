@@ -12,7 +12,7 @@
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Form-->
-            <form asp-area="Admin" asp-controller="Testimonial" asp-action="Update" class="form" method="post" enctype="multipart/form-data"  id="kt_modal_update_form">
+            <form class="form" method="post" enctype="multipart/form-data"  id="kt_modal_update_form">
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_new_address_header">
                     <!--begin::Modal title-->
@@ -127,7 +127,7 @@
                             <!--end::Label-->
                             <!--begin::Input-->
                             <img src="~/TestimonialsImages/@Model.ImageName" style="width:60px; height:60px;" asp-append-version="true">
-                            <input type="file" asp-for="Image" class="form-control form-control-solid" placeholder=""  />
+                            <input type="file" asp-for="Image" accept="image/*" class="form-control form-control-solid" placeholder="" />
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->

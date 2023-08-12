@@ -78,8 +78,23 @@
     <script src="~/js/datatables/eventDatatable.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
-    <script src="~/js/indexHandeller.js"></script>
+    <script src="~/js/GeneralHandeller.js"></script>
+
+    <script>
+        // Show Swal and submit the form for Add event
+        showSwalAndSubmitForm("#kt_modal_new_address_form","#events", "Item has been added successfully.", '/Admin/Event/Add');
+
+        ShowAnyModal(".btn-details", "modal", "Admin/Event/Details", "#ShowModal", "#kt_modal_details");
+
+        //statusHandeller("#testimonials", '/Admin/Testimonial/EditStatus/');
+
+        deleteHandeller("#events", '/Admin/Event/Delete/');
+
+        updateHandeller("#events", "/Admin/Event/Update", '/Admin/Event/Update/');
+    </script>
     
 }
 
-
+@*
+    <script src="~/js/indexHandeller.js"></script>
+*@

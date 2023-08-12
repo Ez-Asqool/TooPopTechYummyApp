@@ -68,7 +68,7 @@
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Form-->
-            <form asp-area="Admin" asp-controller="Event" asp-action="Update" class="form" method="post" enctype="multipart/form-data"  id="kt_modal_update_form">
+            <form  class="form" method="post" enctype="multipart/form-data"  id="kt_modal_update_form">
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_new_address_header">
                     <!--begin::Modal title-->
@@ -140,7 +140,7 @@
                                 <label class="required fs-5 fw-semibold mb-2" asp-for="Price">Price</label>
                                 <!--end::Label-->
                                 <!--end::Input-->
-                                <input type="number" asp-for="Price" class="form-control form-control-solid" placeholder="" required/>
+                                <input type="number" asp-for="Price" class="form-control form-control-solid" placeholder="" required />
                                 <!--end::Input-->
                             </div>
                             <!--end::Col-->
@@ -164,8 +164,9 @@
                             <!--end::Label-->
                             <!--begin::Input-->
                             <img src="~/EventImages/@Model.ImageName" style="width:60px; height:60px;">
-                            <input type="file" asp-for="Image" class="form-control form-control-solid" placeholder=""  />
+                            <input type="file" asp-for="Image" class="form-control form-control-solid" placeholder="" accept="image/*" />
                                  <input type="text" asp-for="ImageName" hidden />
+                                 <input  asp-for="Id" hidden />
 
                             <!--end::Input-->
                         </div>

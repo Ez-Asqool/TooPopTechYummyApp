@@ -106,7 +106,7 @@ $(document).ready(function () {
 
     
 
-    //// Event handler for Delete button
+    // Event handler for Delete button
     //$('#events').on('click', '.btn-delete', function (e) {
     //    e.preventDefault();
     //    var eventId = $(this).data('id');
@@ -127,7 +127,7 @@ $(document).ready(function () {
     //            $.ajax({
     //                url: deleteUrl,
     //                type: 'POST',
-    //                success: function (data) {s
+    //                success: function (data) {
     //                    // On successful deletion, hide the row and show success message
     //                    Swal.fire(
     //                        'Deleted!',

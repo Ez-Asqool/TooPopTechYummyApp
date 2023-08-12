@@ -18,8 +18,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Tesseract;
 using YummyApp.app.Services.FileUploadService;
 using YummyApp.Core.Models;
+using YummyApp.Core.ViewModels.AdminViewModels;
 using YummyApp.EF.Data;
 
 namespace YummyApp.app.Areas.Identity.Pages.Account
@@ -143,13 +145,108 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                //if (Input.Image != null)
+                //{
+                //    var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
+
+                //    // Read the first 8 bytes of the file to check the header
+                //    byte[] headerBytes = new byte[8];
+                //    using (var reader = Input.Image.OpenReadStream())
+                //    {
+                //        reader.Read(headerBytes, 0, headerBytes.Length);
+                //    }
+
+                //    // Define header signatures for valid image formats
+                //    byte[][] validHeaders = new byte[][]
+                //    {
+                //        new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
+                //        new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
+                //        new byte[] { 0xFF, 0xD8, 0xFF }// JPG
+                //    };
+
+                //    bool isValidFormat = false;
+                //    foreach (var validHeader in validHeaders)
+                //    {
+                //        if (headerBytes.Take(validHeader.Length).SequenceEqual(validHeader))
+                //        {
+                //            isValidFormat = true;
+                //            break;
+                //        }
+                //    }
+
+                //    if (!isValidFormat)
+                //    {
+                //        ModelState.AddModelError("Input.Image", "Invalid image File.");
+                //        return Page();
+                //    }
+                //    else if (Input.Image.Length > maxSizeBytes)
+                //    {
+                //        ModelState.AddModelError("Input.Image", "Image size should be within 4 megabytes.");
+                //        return Page();
+                //    }
+
+                //}
+
                 if (Input.Image != null)
                 {
-                    var fileExtension = Path.GetExtension(Input.Image.FileName).ToLower();
-                    if (!(fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png"))
+                    var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
+
+                    // Read the first 8 bytes of the file to check the header
+                    byte[] headerBytes = new byte[8];
+                    using (var reader = Input.Image.OpenReadStream())
                     {
-                        ModelState.AddModelError("Input.Image", "Only JPG, JPEG, and PNG files are allowed.");
+                        reader.Read(headerBytes, 0, headerBytes.Length);
+                    }
+
+                    // Define header signatures for valid image formats
+                    byte[][] validHeaders = new byte[][]
+                    {
+                        new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
+                        new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
+                        new byte[] { 0xFF, 0xD8, 0xFF } // JPG
+                    };
+
+                    bool isValidFormat = false;
+                    foreach (var validHeader in validHeaders)
+                    {
+                        if (headerBytes.Take(validHeader.Length).SequenceEqual(validHeader))
+                        {
+                            isValidFormat = true;
+                            break;
+                        }
+                    }
+
+                    if (!isValidFormat)
+                    {
+                        ModelState.AddModelError("Input.Image", "Invalid image File.");
                         return Page();
+                    }
+                    else if (Input.Image.Length > maxSizeBytes)
+                    {
+                        ModelState.AddModelError("Input.Image", "Image size should be within 4 megabytes.");
+                        return Page();
+                    }
+
+                    // Replace with your OCR implementation
+                    // Example: Tesseract OCR library
+
+                    var tesseractExePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tesseract.exe");
+                    var tessdataPath = Path.GetDirectoryName(tesseractExePath);
+
+                    using (var engine = new TesseractEngine(tessdataPath, "eng", EngineMode.Default))
+                    {
+                        using (var img = Pix.LoadTiffFromMemory(await ImageToByteArrayAsync(Input.Image)))
+                        {
+                            using (var page = engine.Process(img))
+                            {
+                                var text = page.GetText();
+                                if (!string.IsNullOrWhiteSpace(text))
+                                {
+                                    ModelState.AddModelError("Input.Image", "Image contains text.");
+                                    return Page();
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -241,5 +338,16 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
             }
             return (IUserEmailStore<ApplicationUser>)_userStore;
         }
+
+        private async Task<byte[]> ImageToByteArrayAsync(IFormFile image)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await image.CopyToAsync(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+
+
     }
 }

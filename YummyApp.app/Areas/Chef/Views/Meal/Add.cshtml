@@ -125,7 +125,7 @@
                             <label class="required fs-5 fw-semibold mb-2"asp-for="Image">Image</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="file" asp-for="Image" class="form-control form-control-solid" placeholder="" required />
+                            <input type="file" asp-for="Image" accept="image/*" class="form-control form-control-solid" placeholder="" required />
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -136,7 +136,7 @@
                 <!--begin::Modal footer-->
                 <div class="modal-footer flex-center">
                     <!--begin::Button-->
-                    <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">Discard</button>
+                    <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3 btn-discard">Discard</button>
                     <!--end::Button-->
                     <!--begin::Button-->
                     <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">

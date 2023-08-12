@@ -71,18 +71,74 @@ namespace YummyApp.app.Areas.Admin.Controllers
                 _mapper.Map(updateChef, chefExists);
                 chefExists.UserType = UserType.Chef;
 
-                if(updateChef.Image != null)
+                //if (updateChef.Image != null)
+                //{
+                //    var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
+
+                //    var fileExtension = Path.GetExtension(updateChef.Image.FileName).ToLower();
+                //    if (!(fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png"))
+                //    {
+                //        ModelState.AddModelError("Image", "Only JPG, JPEG, and PNG files are allowed.");
+                //        return View(updateChef);
+
+
+                //    }
+                //    else if (updateChef.Image.Length > maxSizeBytes)
+                //    {
+
+                //        ModelState.AddModelError("Image", "Image size should be within 4 megabytes.");
+                //        return View(updateChef);
+                //    }
+                //    else
+                //    {
+                //        chefExists.ImageName = _imageService.updateImage("UserImages", updateChef.Image, updateChef.ImageName);
+
+                //    }
+                //}
+
+
+                if (updateChef.Image != null)
                 {
-                    var fileExtension = Path.GetExtension(updateChef.Image.FileName).ToLower();
-                    if (!(fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png"))
+                    var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
+
+                    // Read the first 8 bytes of the file to check the header
+                    byte[] headerBytes = new byte[8];
+                    using (var reader = updateChef.Image.OpenReadStream())
                     {
-                        ModelState.AddModelError("Image", "Only JPG, JPEG, and PNG files are allowed.");
+                        reader.Read(headerBytes, 0, headerBytes.Length);
+                    }
+
+                    // Define header signatures for valid image formats
+                    byte[][] validHeaders = new byte[][]
+                    {
+                        new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
+                        new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
+                        new byte[] { 0xFF, 0xD8, 0xFF }// JPG
+                    };
+
+                    bool isValidFormat = false;
+                    foreach (var validHeader in validHeaders)
+                    {
+                        if (headerBytes.Take(validHeader.Length).SequenceEqual(validHeader))
+                        {
+                            isValidFormat = true;
+                            break;
+                        }
+                    }
+
+                    if (!isValidFormat)
+                    {
+                        ModelState.AddModelError("Image", "Invalid image File.");
+                        return View(updateChef);
+                    }
+                    else if (updateChef.Image.Length > maxSizeBytes)
+                    {
+                        ModelState.AddModelError("Image", "Image size should be within 4 megabytes.");
                         return View(updateChef);
                     }
                     else
                     {
                         chefExists.ImageName = _imageService.updateImage("UserImages", updateChef.Image, updateChef.ImageName);
-
                     }
                 }
 

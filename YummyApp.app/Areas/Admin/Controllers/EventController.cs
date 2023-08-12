@@ -97,7 +97,7 @@ namespace YummyApp.app.Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            return View(updateEventVM);
+            return PartialView("/Areas/Admin/Views/Event/Update.cshtml", updateEventVM);
         }
 
         
