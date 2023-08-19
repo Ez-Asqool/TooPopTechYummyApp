@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using YummyApp.Core.ViewModels.ChefViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.Logging;
+using YummyApp.Core;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace YummyApp.EF.Repositories
 {

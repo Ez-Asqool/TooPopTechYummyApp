@@ -1,7 +1,9 @@
 using Hangfire;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using YummyApp.app.Models;
 using YummyApp.app.Services;
 using YummyApp.app.Services.FileUploadService;
@@ -79,6 +81,18 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddSignalR();
 
+
+builder.Services.AddLocalization();
+
+builder.Services.AddMvc()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+
+var supportedCultures = new[] {"en-US", "ar"};
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -95,6 +109,8 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseRequestLocalization(localizationOptions);
 
 app.UseRouting();
 

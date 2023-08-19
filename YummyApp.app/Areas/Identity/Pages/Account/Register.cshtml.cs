@@ -187,56 +187,380 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
 
                 //}
 
+                //if (Input.Image != null)
+                //{
+                //    var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
+
+                //    // Read the first 8 bytes of the file to check the header
+                //    byte[] headerBytes = new byte[8];
+                //    using (var reader = Input.Image.OpenReadStream())
+                //    {
+                //        reader.Read(headerBytes, 0, headerBytes.Length);
+                //    }
+
+                //    // Define header signatures for valid image formats
+                //    byte[][] validHeaders = new byte[][]
+                //    {
+                //    new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
+                //    new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
+                //    new byte[] { 0xFF, 0xD8, 0xFF } // JPG
+                //    };
+
+                //    bool isValidFormat = false;
+                //    foreach (var validHeader in validHeaders)
+                //    {
+                //        if (headerBytes.Take(validHeader.Length).SequenceEqual(validHeader))
+                //        {
+                //            isValidFormat = true;
+                //            break;
+                //        }
+                //    }
+
+                //    if (!isValidFormat)
+                //    {
+                //        ModelState.AddModelError("ImageFile", "Invalid image file format.");
+                //        return Page();
+                //    }
+                //    else if (Input.Image.Length > maxSizeBytes)
+                //    {
+                //        ModelState.AddModelError("ImageFile", "Image size should be within 4 megabytes.");
+                //        return Page();
+                //    }
+
+                //    // Replace with your OCR implementation using Tesseract
+                //    using (var engine = new TesseractEngine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "eng", EngineMode.Default))
+                //    {
+                //        using (var img = Pix.LoadTiffFromMemory(await ImageToByteArrayAsync(Input.Image)))
+                //        {
+                //            using (var page = engine.Process(img))
+                //            {
+                //                var text = page.GetText();
+                //                if (!string.IsNullOrWhiteSpace(text))
+                //                {
+                //                    ModelState.AddModelError("ImageFile", "Image contains text.");
+                //                    return Page();
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+
+                //if (Input.Image != null)
+                //{
+                //    var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
+
+                //    // Read the first 8 bytes of the file to check the header
+                //    byte[] headerBytes = new byte[8];
+                //    using (var reader = Input.Image.OpenReadStream())
+                //    {
+                //        reader.Read(headerBytes, 0, headerBytes.Length);
+                //    }
+
+                //    // Define header signatures for valid image formats
+                //    byte[][] validHeaders = new byte[][]
+                //    {
+                //    new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
+                //    new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
+                //    new byte[] { 0xFF, 0xD8, 0xFF } // JPG
+                //    };
+
+                //    bool isValidFormat = false;
+                //    foreach (var validHeader in validHeaders)
+                //    {
+                //        if (headerBytes.Take(validHeader.Length).SequenceEqual(validHeader))
+                //        {
+                //            isValidFormat = true;
+                //            break;
+                //        }
+                //    }
+
+                //    if (!isValidFormat)
+                //    {
+                //        ModelState.AddModelError("Image", "Invalid image file.");
+                //        return Page();
+                //    }
+                //    else if (Input.Image.Length > maxSizeBytes)
+                //    {
+                //        ModelState.AddModelError("Image", "Image size should be within 4 megabytes.");
+                //        return Page();
+                //    }
+
+                //    // Replace with your actual Tesseract OCR implementation
+                //    var tesseractExePath = Path.Combine("C:\\Program Files\\Tesseract-OCR", "tesseract.exe");
+                //    var tessdataPath = Path.GetDirectoryName(tesseractExePath);
+
+                //    using (var engine = new TesseractEngine(tessdataPath, "eng", EngineMode.Default))
+                //    {
+                //        using (var img = Pix.LoadTiffFromMemory(ImageToByteArray(Input.Image)))
+                //        {
+                //            using (var page = engine.Process(img))
+                //            {
+                //                var text = page.GetText();
+                //                if (!string.IsNullOrWhiteSpace(text))
+                //                {
+                //                    ModelState.AddModelError("Image", "Image contains text.");
+                //                    return Page();
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+
+                //if (Input.Image != null)
+                //{
+                //    var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
+
+                //    // Read the first 8 bytes of the file to check the header
+                //    byte[] headerBytes = new byte[8];
+                //    using (var reader = Input.Image.OpenReadStream())
+                //    {
+                //        reader.Read(headerBytes, 0, headerBytes.Length);
+                //    }
+
+                //    // Define header signatures for valid image formats
+                //    byte[][] validHeaders = new byte[][]
+                //    {
+                //        new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
+                //        new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
+                //        new byte[] { 0xFF, 0xD8, 0xFF } // JPG
+                //    };
+
+                //    bool isValidFormat = false;
+                //    foreach (var validHeader in validHeaders)
+                //    {
+                //        if (headerBytes.Take(validHeader.Length).SequenceEqual(validHeader))
+                //        {
+                //            isValidFormat = true;
+                //            break;
+                //        }
+                //    }
+
+                //    if (!isValidFormat)
+                //    {
+                //        ModelState.AddModelError("Input.Image", "Invalid image File.");
+                //        return Page();
+                //    }
+                //    else if (Input.Image.Length > maxSizeBytes)
+                //    {
+                //        ModelState.AddModelError("Input.Image", "Image size should be within 4 megabytes.");
+                //        return Page();
+                //    }
+
+                //    // Replace with your OCR implementation
+                //    // Example: Tesseract OCR library
+
+                //    //var tesseractExePath = Path.Combine("C:\\Program Files\\Tesseract-OCR", "tesseract.exe");
+                //    //var tessdataPath = Path.GetDirectoryName(tesseractExePath);
+
+                //    //using (var engine = new TesseractEngine(tessdataPath, "eng", EngineMode.Default))
+                //    //{
+                //    var tesseractExePath = Path.Combine("C:\\Program Files\\Tesseract-OCR", "tesseract.exe");
+                //    var datapath = @"D:\tessdata-main\tessdata-main"; // Provide the correct path
+
+                //    using (var engine = new TesseractEngine(datapath, "eng", EngineMode.Default))
+                //    {
+                //        using (var img = Pix.LoadTiffFromMemory(await ImageToByteArrayAsync(Input.Image)))
+                //        {
+                //            using (var page = engine.Process(img))
+                //            {
+                //                var text = page.GetText();
+                //                if (!string.IsNullOrWhiteSpace(text))
+                //                {
+                //                    ModelState.AddModelError("Input.Image", "Image contains text.");
+                //                    return Page();
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+
+                //if (Input.Image != null)
+                //{
+                //    var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
+
+                //    // Read the first 8 bytes of the file to check the header
+                //    byte[] headerBytes = new byte[8];
+                //    using (var reader = Input.Image.OpenReadStream())
+                //    {
+                //        reader.Read(headerBytes, 0, headerBytes.Length);
+                //    }
+
+                //    // Define header signatures for valid image formats
+                //    byte[][] validHeaders = new byte[][]
+                //    {
+                //        new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
+                //        new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
+                //        new byte[] { 0xFF, 0xD8, 0xFF } // JPG
+                //    };
+
+                //    bool isValidFormat = false;
+                //    foreach (var validHeader in validHeaders)
+                //    {
+                //        if (headerBytes.Take(validHeader.Length).SequenceEqual(validHeader))
+                //        {
+                //            isValidFormat = true;
+                //            break;
+                //        }
+                //    }
+
+                //    if (!isValidFormat)
+                //    {
+                //        ModelState.AddModelError("Input.Image", "Invalid image File.");
+                //        return Page();
+                //    }
+                //    else if (Input.Image.Length > maxSizeBytes)
+                //    {
+                //        ModelState.AddModelError("Input.Image", "Image size should be within 4 megabytes.");
+                //        return Page();
+                //    }
+
+                //    try
+                //    {
+                //        using (var memoryStream = new MemoryStream())
+                //        {
+                //            await Input.Image.CopyToAsync(memoryStream);
+                //            memoryStream.Seek(0, SeekOrigin.Begin); // Reset the position to the beginning
+
+                //            using (var img = Pix.LoadTiffFromMemory(memoryStream.ToArray()))
+                //            {
+                //                // Replace the following with your OCR implementation
+
+                //                var tesseractExePath = Path.Combine("C:\\Program Files\\Tesseract-OCR", "tesseract.exe");
+                //                var datapath = @"D:\tessdata-main\tessdata-main"; // Provide the correct path
+                //                using (var engine = new TesseractEngine(datapath, "eng", EngineMode.Default))
+                //                {
+                //                    using (var page = engine.Process(img))
+                //                    {
+                //                        var text = page.GetText();
+                //                        if (!string.IsNullOrWhiteSpace(text))
+                //                        {
+                //                            ModelState.AddModelError("Input.Image", "Image contains text.");
+                //                            return Page();
+                //                        }
+                //                    }
+                //                }
+                //            }
+                //        }
+                //    }
+                //    catch (IOException ex)
+                //    {
+                //        ModelState.AddModelError("Input.Image", $"Failed to load image from memory: {ex.Message}");
+                //        return Page();
+                //    }
+                //}
+
+                //        if (Input.Image != null)
+                //        {
+                //            var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
+
+                //            // Read the first 8 bytes of the file to check the header
+                //            byte[] headerBytes = new byte[8];
+                //            using (var reader = Input.Image.OpenReadStream())
+                //            {
+                //                reader.Read(headerBytes, 0, headerBytes.Length);
+                //            }
+
+                //            // Define header signatures for valid image formats
+                //            byte[][] validHeaders = new byte[][]
+                //            {
+                //new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
+                //new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
+                //new byte[] { 0xFF, 0xD8, 0xFF } // JPG
+                //            };
+
+                //            bool isValidFormat = false;
+                //            foreach (var validHeader in validHeaders)
+                //            {
+                //                if (headerBytes.Take(validHeader.Length).SequenceEqual(validHeader))
+                //                {
+                //                    isValidFormat = true;
+                //                    break;
+                //                }
+                //            }
+
+                //            if (!isValidFormat)
+                //            {
+                //                ModelState.AddModelError("Input.Image", "Invalid image File.");
+                //                return Page();
+                //            }
+                //            else if (Input.Image.Length > maxSizeBytes)
+                //            {
+                //                ModelState.AddModelError("Input.Image", "Image size should be within 4 megabytes.");
+                //                return Page();
+                //            }
+
+                //            try
+                //            {
+                //                using (var memoryStream = new MemoryStream())
+                //                {
+                //                    await Input.Image.CopyToAsync(memoryStream);
+                //                    memoryStream.Seek(0, SeekOrigin.Begin); // Reset the position to the beginning
+
+                //                    var tesseractExePath = Path.Combine("C:\\Program Files\\Tesseract-OCR", "tesseract.exe");
+                //                    var datapath = @"D:\tessdata-main\tessdata-main"; // Provide the correct path
+                //                    using (var engine = new TesseractEngine(datapath, "eng", EngineMode.Default))
+                //                    {
+                //                        using (var img = Pix.LoadTiffFromMemory(memoryStream.ToArray()))
+                //                        {
+                //                            using (var page = engine.Process(img))
+                //                            {
+                //                                var text = page.GetText();
+                //                                if (!string.IsNullOrWhiteSpace(text))
+                //                                {
+                //                                    ModelState.AddModelError("Input.Image", "Image contains text.");
+                //                                    return Page();
+                //                                }
+                //                            }
+                //                        }
+                //                    }
+                //                }
+                //            }
+                //            catch (IOException ex)
+                //            {
+                //                ModelState.AddModelError("Input.Image", $"Failed to load image from memory: {ex.Message}");
+                //                return Page();
+                //            }
+                //        }
+
                 if (Input.Image != null)
                 {
                     var maxSizeBytes = 4 * 1024 * 1024; // 4 megabytes in bytes
 
-                    // Read the first 8 bytes of the file to check the header
-                    byte[] headerBytes = new byte[8];
-                    using (var reader = Input.Image.OpenReadStream())
+                    using (var memoryStream = new MemoryStream())
                     {
-                        reader.Read(headerBytes, 0, headerBytes.Length);
-                    }
+                        await Input.Image.CopyToAsync(memoryStream);
+                        memoryStream.Seek(0, SeekOrigin.Begin); // Reset the position to the beginning
 
-                    // Define header signatures for valid image formats
-                    byte[][] validHeaders = new byte[][]
-                    {
-                        new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
-                        new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
-                        new byte[] { 0xFF, 0xD8, 0xFF } // JPG
-                    };
+                        byte[] headerBytes = new byte[8];
+                        memoryStream.Read(headerBytes, 0, headerBytes.Length);
 
-                    bool isValidFormat = false;
-                    foreach (var validHeader in validHeaders)
-                    {
-                        if (headerBytes.Take(validHeader.Length).SequenceEqual(validHeader))
+                        byte[][] validHeaders = new byte[][]
                         {
-                            isValidFormat = true;
-                            break;
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 }, // JPEG
+            new byte[] { 0x89, 0x50, 0x4E, 0x47 }, // PNG
+            new byte[] { 0xFF, 0xD8, 0xFF } // JPG
+                        };
+
+                        bool isValidFormat = validHeaders.Any(validHeader => headerBytes.Take(validHeader.Length).SequenceEqual(validHeader));
+
+                        if (!isValidFormat)
+                        {
+                            ModelState.AddModelError("Input.Image", "Invalid image File.");
+                            return Page();
                         }
-                    }
-
-                    if (!isValidFormat)
-                    {
-                        ModelState.AddModelError("Input.Image", "Invalid image File.");
-                        return Page();
-                    }
-                    else if (Input.Image.Length > maxSizeBytes)
-                    {
-                        ModelState.AddModelError("Input.Image", "Image size should be within 4 megabytes.");
-                        return Page();
-                    }
-
-                    // Replace with your OCR implementation
-                    // Example: Tesseract OCR library
-
-                    var tesseractExePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tesseract.exe");
-                    var tessdataPath = Path.GetDirectoryName(tesseractExePath);
-
-                    using (var engine = new TesseractEngine(tessdataPath, "eng", EngineMode.Default))
-                    {
-                        using (var img = Pix.LoadTiffFromMemory(await ImageToByteArrayAsync(Input.Image)))
+                        else if (Input.Image.Length > maxSizeBytes)
                         {
+                            ModelState.AddModelError("Input.Image", "Image size should be within 4 megabytes.");
+                            return Page();
+                        }
+
+                        try
+                        {
+                            var tesseractExePath = "tesseract"; // This assumes the 'tesseract' command is available globally
+                            var datapath = @"D:\tessdata-main\tessdata-main"; // Provide the correct path
+
+                            using (var engine = new TesseractEngine(datapath, "eng", EngineMode.Default))
+                            using (var img = Pix.LoadTiffFromMemory(memoryStream.ToArray()))
                             using (var page = engine.Process(img))
                             {
                                 var text = page.GetText();
@@ -246,6 +570,11 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
                                     return Page();
                                 }
                             }
+                        }
+                        catch (IOException ex)
+                        {
+                            ModelState.AddModelError("Input.Image", $"Failed to load image from memory: {ex.Message}");
+                            return Page();
                         }
                     }
                 }
@@ -339,14 +668,32 @@ namespace YummyApp.app.Areas.Identity.Pages.Account
             return (IUserEmailStore<ApplicationUser>)_userStore;
         }
 
-        private async Task<byte[]> ImageToByteArrayAsync(IFormFile image)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                await image.CopyToAsync(memoryStream);
-                return memoryStream.ToArray();
-            }
-        }
+        //private async Task<byte[]> ImageToByteArrayAsync(IFormFile image)
+        //{
+        //    using (var memoryStream = new MemoryStream())
+        //    {
+        //        await image.CopyToAsync(memoryStream);
+        //        return memoryStream.ToArray();
+        //    }
+        //}
+
+        //private async Task<byte[]> ImageToByteArrayAsync(IFormFile image)
+        //{
+        //    using (var memoryStream = new MemoryStream())
+        //    {
+        //        await image.CopyToAsync(memoryStream);
+        //        return memoryStream.ToArray();
+        //    }
+        //}
+
+        //private byte[] ImageToByteArray(IFormFile image)
+        //{
+        //    using (var memoryStream = new MemoryStream())
+        //    {
+        //        image.CopyTo(memoryStream);
+        //        return memoryStream.ToArray();
+        //    }
+        //}
 
 
     }

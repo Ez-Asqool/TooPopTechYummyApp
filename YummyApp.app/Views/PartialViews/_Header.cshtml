@@ -1,4 +1,7 @@
-﻿@*
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer _localizer
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -11,17 +14,17 @@
       <a asp-area="" asp-controller="Home" asp-action="Index" class="logo d-flex align-items-center me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="~/img/logo.png" alt=""> -->
-        <h1>Yummy<span>.</span></h1>
+            <h1>@_localizer["Yummy"]<span>.</span></h1>
       </a>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-          <li><a asp-area="" asp-controller="Home" asp-action="About" >About</a></li>
-          <li><a asp-area="" asp-controller="Menu" asp-action="Index" >Menu</a></li>
-          <li><a asp-area="" asp-controller="Event" asp-action="Index" >Events</a></li>
-          <li><a href="/Chef/Index">Chefs</a></li>
-          <li><a href="#gallery">Gallery</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">@_localizer["Home"]</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">@_localizer["About"]</a></li>
+                <li><a asp-area="" asp-controller="Menu" asp-action="Index">@_localizer["Menu"]</a></li>
+                <li><a asp-area="" asp-controller="Event" asp-action="Index">@_localizer["Events"]</a></li>
+                <li><a href="/Chef/Index">@_localizer["Chefs"]</a></li>
+                <li><a href="#gallery">@_localizer["Gallery"]</a></li>
           @*<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -39,11 +42,11 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>*@
-          <li><a asp-area="" asp-controller="Contact" asp-action="Submit">Contact</a></li>
+                <li><a asp-area="" asp-controller="Contact" asp-action="Submit">@_localizer["Contact"]</a></li>
         </ul>
       </nav><!-- .navbar -->
 
-      <a class="btn-book-a-table" href="#book-a-table">Book a Table</a>
+        <a class="btn-book-a-table" href="#book-a-table">@_localizer["Book a Table"]</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
